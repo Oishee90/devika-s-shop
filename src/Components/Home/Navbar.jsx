@@ -1,22 +1,50 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
-import { FiSearch, FiHeart, FiShoppingBag, FiUser } from "react-icons/fi";
-import { useNavigate } from "react-router-dom";
+import {
+  FiSearch,
+  FiHeart,
+  FiUser,
+  FiChevronDown,
+  FiChevronRight,
+} from "react-icons/fi";
+import { PiShoppingCart } from "react-icons/pi";
+import { useNavigate, useLocation } from "react-router-dom";
 import HeadingStyle from "./HeadingStyle";
+import CartModal from "../ShortCutModal/CartModal";
+
+/* ===== Fake Cart Data ===== */
+const fakeCartItems = [
+  {
+    id: 1,
+    name: "Groom Sherwani",
+    price: 256,
+    qty: 2,
+    size: "XL",
+    color: "White",
+    image: "https://i.ibb.co/2kz5Y7n/sherwani.png",
+  },
+  {
+    id: 2,
+    name: "Groom Sherwani",
+    price: 256,
+    qty: 1,
+    size: "XL",
+    color: "White",
+    image: "https://i.ibb.co/2kz5Y7n/sherwani.png",
+  },
+];
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [menswearOpen, setMenswearOpen] = useState(false);
+  const [categoryOpen, setCategoryOpen] = useState(false);
 
-  const menuItems = [
-    { name: "Home", id: "home" },
-    { name: "Menswear", id: "features" },
-    { name: "Digital Stylist", id: "review" },
-    { name: "My Story", id: "faq" },
-    { name: "Rewards", id: "rewards" },
-  ];
+  const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems] = useState(fakeCartItems);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -24,70 +52,304 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const closeAllDropdowns = () => {
+    setMenswearOpen(false);
+    setCategoryOpen(false);
+    setMobileOpen(false);
+  };
+
+  const isActive = (path) => location.pathname === path;
+
+  const underlineClass = (path) =>
+    `relative transition-colors duration-300
+     hover:text-[#F9EFD5]
+     after:absolute after:left-0 after:-bottom-1 after:h-[1px]
+     after:bg-[#F9EFD5] after:transition-all after:duration-300
+     ${isActive(path) ? "after:w-full" : "after:w-0 hover:after:w-full"}`;
+
   return (
-    <div className="w-full">
-      {/* Optional top strip */}
+    <div className="w-full canela">
       <HeadingStyle />
 
-      {/* NAVBAR */}
       <nav
-        className={`fixed top-[48px] left-0 w-full z-50 transition-all duration-300
-        ${
+        className={`fixed top-[48px] left-0 w-full z-50 transition-all ${
           isScrolled
             ? "bg-transparent backdrop-blur-md shadow-md"
             : "bg-transparent backdrop-blur-sm"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-[70px] flex items-center justify-between text-white">
-          {/* Left Menu */}
-          <ul className="items-center hidden gap-8 text-sm tracking-wide uppercase lg:flex">
-            {menuItems.map(({ name, id }) => (
-              <li key={id}>
-                <button
-                  onClick={() => navigate("/")}
-                  className="relative hover:text-[#f5c27a] after:absolute after:left-0 after:-bottom-1 after:h-[1px] after:w-0 hover:after:w-full after:bg-[#f5c27a] after:transition-all"
-                >
-                  {name}
-                </button>
-              </li>
-            ))}
+        <div className="mx-auto lg:px-32 px-6 h-[70px] flex items-center justify-between text-white">
+          {/* LEFT MENU */}
+          <ul className="items-center hidden gap-8 text-sm lg:flex">
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/");
+                  closeAllDropdowns();
+                }}
+                className={underlineClass("/")}
+              >
+                Home
+              </button>
+            </li>
+
+            <li className="relative">
+              <button
+                onClick={() => {
+                  setMenswearOpen(!menswearOpen);
+                  setCategoryOpen(false);
+                }}
+                className={`flex items-center gap-1 ${underlineClass(
+                  "/menswear",
+                )}`}
+              >
+                Menswear <FiChevronDown size={14} />
+              </button>
+
+              {menswearOpen && (
+                <div className="absolute top-8 left-0 w-[220px] cream-bg red-color shadow-lg">
+                  <button
+                    onClick={() => setCategoryOpen(!categoryOpen)}
+                    className="w-full flex justify-between items-center px-4 py-3 hover:bg-[#222] hover:text-[#fce9cf] text-sm"
+                  >
+                    Shop By Category <FiChevronRight />
+                  </button>
+
+                  {categoryOpen && (
+                    <div className="absolute top-0 left-[220px] w-[220px] cream-bg">
+                      {[
+                        "waistcoats",
+                        "jackets",
+                        "kurtas",
+                        "trousers",
+                        "all-products",
+                      ].map((item) => (
+                        <button
+                          key={item}
+                          onClick={() => {
+                            navigate(`/menswear/${item}`);
+                            closeAllDropdowns();
+                          }}
+                          className="block w-full text-left px-4 py-3 hover:bg-[#222] hover:text-[#fce9cf]"
+                        >
+                          {item.replace("-", " ")}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </li>
+
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/digital-stylist");
+                  closeAllDropdowns();
+                }}
+                className={underlineClass("/digital-stylist")}
+              >
+                Digital Stylist
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/my-story");
+                  closeAllDropdowns();
+                }}
+                className={underlineClass("/my-story")}
+              >
+                My Story
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/rewards");
+                  closeAllDropdowns();
+                }}
+                className={underlineClass("/rewards")}
+              >
+                Rewards
+              </button>
+            </li>
           </ul>
 
-          {/* Logo (Center) */}
-          <div className="flex items-center justify-center">
-            <img src={logo} alt="logo" className="object-contain h-8" />
-          </div>
+          {/* LOGO */}
+          <img src={logo} alt="logo" />
 
-          {/* Right Icons */}
-          <div className="items-center hidden gap-6 text-xl lg:flex">
-            <FiSearch className="cursor-pointer hover:text-[#f5c27a]" />
-            <FiHeart className="cursor-pointer hover:text-[#f5c27a]" />
-            <FiShoppingBag className="cursor-pointer hover:text-[#f5c27a]" />
-            <FiUser className="cursor-pointer hover:text-[#f5c27a]" />
-          </div>
+          {/* RIGHT ICONS */}
+          <div className="flex items-center gap-4 text-xl">
+            <FiSearch />
+            <FiUser />
+            <FiHeart />
 
-          {/* Mobile Menu */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-xl lg:hidden"
-          >
-            ☰
-          </button>
+            {/* CART ICON WITH BADGE */}
+            <div
+              className="relative cursor-pointer"
+              onClick={() => setCartOpen(true)}
+            >
+              <PiShoppingCart />
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-[#571010] text-white text-[10px] w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </div>
+
+            {/* MOBILE MENU BUTTON */}
+            <button
+              className="relative w-6 h-6 lg:hidden"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              <span
+                className={`absolute h-[2px] w-full bg-white transition-all duration-300 ${
+                  mobileOpen ? "rotate-45 top-3" : "top-1"
+                }`}
+              />
+              <span
+                className={`absolute h-[2px] w-full bg-white transition-all duration-300 ${
+                  mobileOpen ? "opacity-0" : "top-3"
+                }`}
+              />
+              <span
+                className={`absolute h-[2px] w-full bg-white transition-all duration-300 ${
+                  mobileOpen ? "-rotate-45 top-3" : "top-5"
+                }`}
+              />
+            </button>
+          </div>
+        </div>
+
+        {/* MOBILE MENU */}
+        <div
+          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden ${
+            mobileOpen ? "sm:w-[40%] w-full" : "w-0"
+          }`}
+        >
+          <ul className="flex flex-col gap-5 px-6 py-6">
+            {/* Home */}
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/");
+                  closeAllDropdowns();
+                }}
+                className="w-full text-left hover:text-[#571010]"
+              >
+                Home
+              </button>
+            </li>
+
+            {/* Menswear */}
+            <li>
+              <button
+                onClick={() => {
+                  setMenswearOpen(!menswearOpen);
+                  setCategoryOpen(false);
+                }}
+                className="flex items-center justify-between w-full hover:text-[#571010]"
+              >
+                Menswear
+                <FiChevronDown
+                  className={`transition-transform ${
+                    menswearOpen ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+
+              {/* Shop By Category */}
+              {menswearOpen && (
+                <div className="mt-3 ml-4">
+                  <button
+                    onClick={() => setCategoryOpen(!categoryOpen)}
+                    className="flex items-center justify-between w-full text-sm hover:text-[#571010]"
+                  >
+                    Shop By Category
+                    <FiChevronDown
+                      className={`transition-transform ${
+                        categoryOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Category List */}
+                  {categoryOpen && (
+                    <div className="flex flex-col gap-3 mt-3 ml-4 text-sm">
+                      {[
+                        "waistcoats",
+                        "jackets",
+                        "kurtas",
+                        "trousers",
+                        "all-products",
+                      ].map((item) => (
+                        <button
+                          key={item}
+                          onClick={() => {
+                            navigate(`/menswear/${item}`);
+                            closeAllDropdowns();
+                          }}
+                          className="text-left hover:text-[#571010]"
+                        >
+                          {item.replace("-", " ")}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </li>
+
+            {/* Digital Stylist */}
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/digital-stylist");
+                  closeAllDropdowns();
+                }}
+                className="w-full text-left hover:text-[#571010]"
+              >
+                Digital Stylist
+              </button>
+            </li>
+
+            {/* My Story */}
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/my-story");
+                  closeAllDropdowns();
+                }}
+                className="w-full text-left hover:text-[#571010]
+                "
+              >
+                My Story
+              </button>
+            </li>
+
+            {/* Rewards */}
+            <li>
+              <button
+                onClick={() => {
+                  navigate("/rewards");
+                  closeAllDropdowns();
+                }}
+                className="w-full text-left hover:text-[#571010]"
+              >
+                Rewards
+              </button>
+            </li>
+          </ul>
         </div>
       </nav>
 
-      {/* Mobile Dropdown */}
-      {isOpen && (
-        <div className="fixed top-[118px] w-full bg-black/90 text-white z-40 lg:hidden">
-          <ul className="flex flex-col gap-4 py-6 text-center">
-            {menuItems.map(({ name }) => (
-              <li key={name}>
-                <button className="text-lg">{name}</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      {/* CART MODAL */}
+      <CartModal
+        open={cartOpen}
+        onClose={() => setCartOpen(false)}
+        cartItems={cartItems}
+      />
     </div>
   );
 };

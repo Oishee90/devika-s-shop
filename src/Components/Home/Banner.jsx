@@ -67,7 +67,7 @@ const Banner = () => {
 
             <div className="absolute inset-0 bg-black/40" />
 
-            <div className="relative z-30 flex items-center h-full px-8 mx-auto max-w-7xl">
+            <div className="relative z-30 flex items-center h-full px-6 mx-auto lg:px-32">
               <div className="max-w-xl text-[#EFE8D8]">
                 <h1 className="text-5xl font-light leading-tight md:text-6xl">
                   {slide.title} <br /> {slide.year}
@@ -92,13 +92,13 @@ const Banner = () => {
             <span
               key={i}
               className={`w-3 h-3 rounded-full transition-all
-                ${i === index ? "bg-red-600 scale-125" : "bg-[#F9EFD566]"}`}
+                ${i === index ? "red-bg scale-125" : "bg-[#F9EFD566]"}`}
             />
           ))}
         </div>
 
         {/* ARROWS */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 px-6 lg:pr-32 ">
           <button
             onClick={prev}
             className="w-10 h-10 rounded-full border border-[#EFE8D8] text-[#EFE8D8]

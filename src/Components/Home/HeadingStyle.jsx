@@ -3,10 +3,10 @@ import Marquee from "react-fast-marquee";
 
 export default function HeadingStyle() {
   return (
-    <div className="fixed top-0 left-0 w-full z-[60] red-bg text-white py-4 overflow-hidden lora text-xs">
-      <Marquee speed={50} gradient={false} pauseOnHover autoFill>
-        <span className="mx-8 tracking-wider uppercase">
-          Shop our Shakti collection now
+    <div className="fixed top-0 left-0 w-full z-[60] cream-bg red-color text-white py-4 overflow-hidden  text-sm canela">
+      <Marquee speed={40} gradient={false} pauseOnHover autoFill>
+        <span className="mx-8 tracking-wider ">
+          Save Big! Get 20% OFF Entire Website
         </span>
       </Marquee>
     </div>
