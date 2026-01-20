@@ -11,6 +11,7 @@ import { PiShoppingCart } from "react-icons/pi";
 import { useNavigate, useLocation } from "react-router-dom";
 import HeadingStyle from "./HeadingStyle";
 import CartModal from "../ShortCutModal/CartModal";
+import WishlistAuthModal from "../ShortCutModal/WishlistAuthModal";
 
 /* ===== Fake Cart Data ===== */
 const fakeCartItems = [
@@ -39,6 +40,10 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menswearOpen, setMenswearOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
+  const [wishlistOpen, setWishlistOpen] = useState(false);
+
+  // fake user (testing)
+  const user = null;
 
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems] = useState(fakeCartItems);
@@ -183,7 +188,16 @@ const Navbar = () => {
           <div className="flex items-center gap-4 text-xl">
             <FiSearch />
             <FiUser />
-            <FiHeart />
+            <FiHeart
+              className="cursor-pointer"
+              onClick={() => {
+                if (!user) {
+                  setWishlistOpen(true); // show modal
+                } else {
+                  navigate("/wishlist");
+                }
+              }}
+            />
 
             {/* CART ICON WITH BADGE */}
             <div
@@ -349,6 +363,10 @@ const Navbar = () => {
         open={cartOpen}
         onClose={() => setCartOpen(false)}
         cartItems={cartItems}
+      />
+      <WishlistAuthModal
+        open={wishlistOpen}
+        onClose={() => setWishlistOpen(false)}
       />
     </div>
   );
