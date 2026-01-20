@@ -42,7 +42,7 @@ const Banner = () => {
     setIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-black">
+    <section className="relative w-full h-screen overflow-hidden bg-black canela">
       {/* SLIDES */}
       {slides.map((slide, i) => {
         const isActive = i === index;
@@ -69,10 +69,10 @@ const Banner = () => {
 
             <div className="relative z-30 flex items-center h-full px-6 mx-auto lg:px-32">
               <div className="max-w-xl text-[#EFE8D8]">
-                <h1 className="text-5xl font-light leading-tight md:text-6xl">
+                <h1 className="text-3xl font-light leading-tight md:text-6xl">
                   {slide.title} <br /> {slide.year}
                 </h1>
-                <p className="mt-4 text-sm leading-relaxed">
+                <p className="max-w-md mt-3 text-sm md:text-lg md:mt-9 inter">
                   {slide.description}
                 </p>
                 <button className="mt-8 inline-flex items-center gap-3 bg-[#EFE8D8] text-black px-6 py-3 text-sm font-medium">
@@ -85,9 +85,9 @@ const Banner = () => {
       })}
 
       {/* CONTROLS + DOTS */}
-      <div className="absolute z-40 flex items-center gap-6 -translate-y-1/2 right-8 top-1/2">
+      <div className="absolute z-40 flex items-center gap-6 -translate-y-1/2 right-8 top-[65%] sm:top-1/2">
         {/* DOTS */}
-        <div className="flex flex-col gap-3">
+        <div className="flex-col hidden gap-3 md:flex">
           {slides.map((_, i) => (
             <span
               key={i}
@@ -98,7 +98,7 @@ const Banner = () => {
         </div>
 
         {/* ARROWS */}
-        <div className="flex flex-col gap-4 px-6 lg:pr-32 ">
+        <div className="flex flex-col gap-6 px-6 lg:pr-32 ">
           <button
             onClick={prev}
             className="w-10 h-10 rounded-full border border-[#EFE8D8] text-[#EFE8D8]

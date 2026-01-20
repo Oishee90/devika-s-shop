@@ -49,7 +49,7 @@ const CartModal = ({ open, onClose, cartItems }) => {
       />
 
       {/* Modal */}
-      <div className="fixed top-[130px] right-[0.5rem] sm:right-6 z-50 w-[310px] sm:w-[460px] cream-bg red-color shadow-xl rounded-lg  p-8">
+      <div className="fixed top-[130px] right-[0.5rem] sm:right-6 z-50 w-[310px] sm:w-[460px] cream-bg red-color shadow-xl rounded-lg  p-8 animate-scaleIn">
         {/* Header */}
         <div className="flex flex-col justify-start mb-8">
           <div className="flex items-center justify-between ">

@@ -42,12 +42,14 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menswearOpen, setMenswearOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
-  const [wishlistOpen, setWishlistOpen] = useState(false);
-  const [searchOpen, setSearchOpen] = useState(false);
+
+  // new single modal state
+  const [activeModal, setActiveModal] = useState(null);
+  // values: "cart" | "wishlist" | "search" | null
+
   // fake user (testing)
   const user = null;
 
-  const [cartOpen, setCartOpen] = useState(false);
   const [cartItems] = useState(fakeCartItems);
 
   const navigate = useNavigate();
@@ -87,7 +89,7 @@ const Navbar = () => {
       >
         <div className="mx-auto lg:px-32 px-6 h-[70px] flex items-center justify-between text-white">
           {/* LEFT MENU */}
-          <ul className="items-center hidden gap-8 text-sm lg:flex">
+          <ul className="items-center hidden gap-8 text-base lg:flex">
             <li>
               <button
                 onClick={() => {
@@ -190,7 +192,10 @@ const Navbar = () => {
           <div className="flex items-center gap-4 text-xl">
             <FiSearch
               className="cursor-pointer"
-              onClick={() => setSearchOpen(true)}
+              onClick={() => {
+                setActiveModal("search");
+                setMobileOpen(false); // close hamburger if open
+              }}
             />
 
             <FiUser />
@@ -198,7 +203,8 @@ const Navbar = () => {
               className="cursor-pointer"
               onClick={() => {
                 if (!user) {
-                  setWishlistOpen(true); // show modal
+                  setActiveModal("wishlist");
+                  setMobileOpen(false); // close hamburger if open
                 } else {
                   navigate("/wishlist");
                 }
@@ -208,7 +214,10 @@ const Navbar = () => {
             {/* CART ICON WITH BADGE */}
             <div
               className="relative cursor-pointer"
-              onClick={() => setCartOpen(true)}
+              onClick={() => {
+                setActiveModal("cart");
+                setMobileOpen(false); // close hamburger if open
+              }}
             >
               <PiShoppingCart />
               {cartItems.length > 0 && (
@@ -221,7 +230,10 @@ const Navbar = () => {
             {/* MOBILE MENU BUTTON */}
             <button
               className="relative w-6 h-6 lg:hidden"
-              onClick={() => setMobileOpen(!mobileOpen)}
+              onClick={() => {
+                setMobileOpen(!mobileOpen);
+                setActiveModal(null); // close popup if open
+              }}
             >
               <span
                 className={`absolute h-[2px] w-full bg-white transition-all duration-300 ${
@@ -362,15 +374,18 @@ const Navbar = () => {
 
       {/* CART MODAL */}
       <CartModal
-        open={cartOpen}
-        onClose={() => setCartOpen(false)}
+        open={activeModal === "cart"}
+        onClose={() => setActiveModal(null)}
         cartItems={cartItems}
       />
       <WishlistAuthModal
-        open={wishlistOpen}
-        onClose={() => setWishlistOpen(false)}
+        open={activeModal === "wishlist"}
+        onClose={() => setActiveModal(null)}
       />
-      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
+      <SearchModal
+        open={activeModal === "search"}
+        onClose={() => setActiveModal(null)}
+      />
     </div>
   );
 };

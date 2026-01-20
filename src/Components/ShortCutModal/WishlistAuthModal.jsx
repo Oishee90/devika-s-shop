@@ -7,7 +7,7 @@ const WishlistAuthModal = ({ open, onClose }) => {
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/60">
       {/* Modal Box */}
-      <div className="relative w-[90%] max-w-xl  cream-bg  p-9 text-center">
+      <div className="relative w-[90%] max-w-xl  cream-bg  p-9 text-center animate-scaleIn">
         {/* Close */}
         <button
           onClick={onClose}
