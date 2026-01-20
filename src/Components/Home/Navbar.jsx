@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
+
 import {
   FiSearch,
   FiHeart,
@@ -12,6 +13,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import HeadingStyle from "./HeadingStyle";
 import CartModal from "../ShortCutModal/CartModal";
 import WishlistAuthModal from "../ShortCutModal/WishlistAuthModal";
+import SearchModal from "../ShortCutModal/SearchModal";
 
 /* ===== Fake Cart Data ===== */
 const fakeCartItems = [
@@ -41,7 +43,7 @@ const Navbar = () => {
   const [menswearOpen, setMenswearOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [wishlistOpen, setWishlistOpen] = useState(false);
-
+  const [searchOpen, setSearchOpen] = useState(false);
   // fake user (testing)
   const user = null;
 
@@ -186,7 +188,11 @@ const Navbar = () => {
 
           {/* RIGHT ICONS */}
           <div className="flex items-center gap-4 text-xl">
-            <FiSearch />
+            <FiSearch
+              className="cursor-pointer"
+              onClick={() => setSearchOpen(true)}
+            />
+
             <FiUser />
             <FiHeart
               className="cursor-pointer"
@@ -238,7 +244,7 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <div
-          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden ${
+          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden inter ${
             mobileOpen ? "sm:w-[40%] w-full" : "w-0"
           }`}
         >
@@ -250,7 +256,7 @@ const Navbar = () => {
                   navigate("/");
                   closeAllDropdowns();
                 }}
-                className="w-full text-left hover:text-[#571010]"
+                className="w-full text-xl text-left hover:text-[#571010]"
               >
                 Home
               </button>
@@ -263,7 +269,7 @@ const Navbar = () => {
                   setMenswearOpen(!menswearOpen);
                   setCategoryOpen(false);
                 }}
-                className="flex items-center justify-between w-full hover:text-[#571010]"
+                className="flex items-center justify-between w-full hover:text-[#571010] text-xl"
               >
                 Menswear
                 <FiChevronDown
@@ -278,7 +284,7 @@ const Navbar = () => {
                 <div className="mt-3 ml-4">
                   <button
                     onClick={() => setCategoryOpen(!categoryOpen)}
-                    className="flex items-center justify-between w-full text-sm hover:text-[#571010]"
+                    className="flex items-center justify-between w-full  hover:text-[#571010] text-lg"
                   >
                     Shop By Category
                     <FiChevronDown
@@ -290,25 +296,21 @@ const Navbar = () => {
 
                   {/* Category List */}
                   {categoryOpen && (
-                    <div className="flex flex-col gap-3 mt-3 ml-4 text-sm">
-                      {[
-                        "waistcoats",
-                        "jackets",
-                        "kurtas",
-                        "trousers",
-                        "all-products",
-                      ].map((item) => (
-                        <button
-                          key={item}
-                          onClick={() => {
-                            navigate(`/menswear/${item}`);
-                            closeAllDropdowns();
-                          }}
-                          className="text-left hover:text-[#571010]"
-                        >
-                          {item.replace("-", " ")}
-                        </button>
-                      ))}
+                    <div className="flex flex-col gap-3 mt-3 ml-4 text-base">
+                      {["Waistcoats", "Jackets", "Kurtas", "Trousers"].map(
+                        (item) => (
+                          <button
+                            key={item}
+                            onClick={() => {
+                              navigate(`/menswear/${item}`);
+                              closeAllDropdowns();
+                            }}
+                            className="text-left hover:text-[#571010]"
+                          >
+                            {item.replace("-", " ")}
+                          </button>
+                        ),
+                      )}
                     </div>
                   )}
                 </div>
@@ -322,7 +324,7 @@ const Navbar = () => {
                   navigate("/digital-stylist");
                   closeAllDropdowns();
                 }}
-                className="w-full text-left hover:text-[#571010]"
+                className="w-full text-xl text-left hover:text-[#571010]"
               >
                 Digital Stylist
               </button>
@@ -335,7 +337,7 @@ const Navbar = () => {
                   navigate("/my-story");
                   closeAllDropdowns();
                 }}
-                className="w-full text-left hover:text-[#571010]
+                className="w-full text-xl text-left hover:text-[#571010]
                 "
               >
                 My Story
@@ -349,7 +351,7 @@ const Navbar = () => {
                   navigate("/rewards");
                   closeAllDropdowns();
                 }}
-                className="w-full text-left hover:text-[#571010]"
+                className="w-full text-xl text-left hover:text-[#571010]"
               >
                 Rewards
               </button>
@@ -368,6 +370,7 @@ const Navbar = () => {
         open={wishlistOpen}
         onClose={() => setWishlistOpen(false)}
       />
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 };
