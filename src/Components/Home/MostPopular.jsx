@@ -26,7 +26,7 @@ const MostPopular = () => {
   return (
     <section className="px-6 py-16 red-bg lg:px-32">
       {/* Header */}
-      <div className="flex items-center justify-between mb-10">
+      <div className="flex flex-col items-start justify-between gap-5 mb-10 md:items-center md:flex-row">
         <div>
           <h2 className="mb-4 text-5xl canela cream-color">Most popular</h2>
           <p className="text-lg cream-color inter">
