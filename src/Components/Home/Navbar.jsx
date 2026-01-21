@@ -68,7 +68,7 @@ const Navbar = () => {
   };
 
   const isActive = (path) => location.pathname === path;
-
+  const isHome = location.pathname === "/";
   const underlineClass = (path) =>
     `relative transition-colors duration-300
      hover:text-[#F9EFD5]
@@ -81,11 +81,15 @@ const Navbar = () => {
       <HeadingStyle />
 
       <nav
-        className={`fixed top-[48px] left-0 w-full z-50 transition-all ${
-          isScrolled
-            ? "bg-transparent backdrop-blur-md shadow-md"
-            : "bg-transparent backdrop-blur-sm"
-        }`}
+        className={`fixed top-[48px] left-0 w-full z-50 transition-all
+    ${
+      isHome
+        ? isScrolled
+          ? "bg-transparent backdrop-blur-md shadow-md"
+          : "bg-transparent backdrop-blur-sm"
+        : "bg-[#571010] shadow-md"
+    }
+  `}
       >
         <div className="mx-auto lg:px-32 px-6 h-[70px] flex items-center justify-between text-white">
           {/* LEFT MENU */}
@@ -136,7 +140,7 @@ const Navbar = () => {
                         <button
                           key={item}
                           onClick={() => {
-                            navigate(`/menswear/${item}`);
+                            navigate(`/all-product`);
                             closeAllDropdowns();
                           }}
                           className="block w-full text-left px-4 py-3 hover:bg-[#222] hover:text-[#fce9cf]"
