@@ -229,7 +229,7 @@ const Navbar = () => {
 
             {/* MOBILE MENU BUTTON */}
             <button
-              className="relative w-6 h-6 lg:hidden"
+              className="relative w-6 h-6 pr-3 lg:hidden "
               onClick={() => {
                 setMobileOpen(!mobileOpen);
                 setActiveModal(null); // close popup if open
@@ -256,7 +256,7 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <div
-          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden inter ${
+          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden inter  ${
             mobileOpen ? "sm:w-[40%] w-full" : "w-0"
           }`}
         >

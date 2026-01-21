@@ -5,7 +5,7 @@ import { MdLock } from "react-icons/md";
 import logo from "../../assets/login-logo.png";
 import bg from "../../assets/login-logo.webp";
 import Swal from "sweetalert2";
-
+import { GoLock } from "react-icons/go";
 const Setnew = () => {
   const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -47,7 +47,8 @@ const Setnew = () => {
         text: "Your password has been reset.",
         icon: "success",
         confirmButtonText: "Go to Login",
-        confirmButtonColor: "#28a745",
+        background: "#F9EFD5", // cream color
+        confirmButtonColor: "#5B0D0D", // red button
         allowOutsideClick: false, // prevents accidental closing
       }).then((result) => {
         if (result.isConfirmed) {
@@ -69,81 +70,81 @@ const Setnew = () => {
       </div>
 
       {/* RIGHT FORM */}
-      <div className="flex justify-center h-screen px-9 py-9 red-bg inter">
-        <div className="w-full max-w-lg cream-color">
+      <div className="flex h-screen px-28 py-9 red-bg canela">
+        <div className="w-full cream-color">
           {/* Logo */}
-          <div className="flex justify-center mb-12">
-            <img src={logo} alt="Logo" className="h-16" />
+          <div className="flex justify-center mb-8">
+            <img src={logo} alt="Logo" className="" />
           </div>
 
-          {/* Heading */}
-          <h2 className="mb-2 text-2xl font-normal">Reset Password</h2>
-          <p className="text-sm text-[#E8D8C3] mb-8">enter your new password</p>
+          <div className="max-w-lg">
+            {/* Heading */}
+            <h2 className="mb-2 text-2xl font-normal">Reset Password</h2>
+            <p className="mb-8 cream-color inter ">enter your new password</p>
 
-          {/* FORM */}
-          <form onSubmit={handleSubmit} className="space-y-5">
-            {/* New Password */}
-            <div>
-              <label className="block mb-2 text-sm font-light">
-                New Password
-              </label>
-              <div className="relative">
-                <MdLock className="absolute top-1/2 -translate-y-1/2 left-3 text-[#E8D8C3]" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full pl-10 pr-12 py-3 bg-transparent border border-[#A04545] rounded-md focus:outline-none focus:border-[#F5E6D3] placeholder-[#B08080] text-sm"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#E8D8C3]"
-                >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
+            {/* FORM */}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              {/* New Password */}
+              <div>
+                <label className="block mb-2 font-light">New Password</label>
+                <div className="relative">
+                  <GoLock className="absolute -translate-y-1/2 top-1/2 left-3 cream-color" />
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-10 pr-12 py-3 bg-transparent border border-[#f9efd5a2] rounded-md focus:outline-none focus:border-[#F5E6D3] placeholder-[#B08080] text-sm"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={togglePasswordVisibility}
+                    className="absolute -translate-y-1/2 right-3 top-1/2 cream-color"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Confirm Password */}
-            <div>
-              <label className="block mb-2 text-sm font-light">
-                Confirm Password
-              </label>
-              <div className="relative">
-                <MdLock className="absolute top-1/2 -translate-y-1/2 left-3 text-[#E8D8C3]" />
-                <input
-                  type={showconfirmPassword ? "text" : "password"}
-                  name="confirmpassword"
-                  value={confirmpassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full pl-10 pr-12 py-3 bg-transparent border border-[#A04545] rounded-md focus:outline-none focus:border-[#F5E6D3] placeholder-[#B08080] text-sm"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={togglenewPasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-[#E8D8C3]"
-                >
-                  {showconfirmPassword ? <FaEyeSlash /> : <FaEye />}
-                </button>
+              {/* Confirm Password */}
+              <div>
+                <label className="block mb-2 text-sm font-light">
+                  Confirm Password
+                </label>
+                <div className="relative">
+                  <GoLock className="absolute top-1/2 -translate-y-1/2 left-3 text-[#E8D8C3]" />
+                  <input
+                    type={showconfirmPassword ? "text" : "password"}
+                    name="confirmpassword"
+                    value={confirmpassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="w-full pl-10 pr-12 py-3 bg-transparent border border-[#f9efd5a2] rounded-md focus:outline-none focus:border-[#F5E6D3] placeholder-[#B08080] text-sm"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={togglenewPasswordVisibility}
+                    className="absolute -translate-y-1/2 right-3 top-1/2 cream-color"
+                  >
+                    {showconfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
               </div>
-            </div>
 
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full py-3 mt-6 bg-[#F5E6D3] text-[#7A1F1F] font-medium rounded-md hover:opacity-90 transition flex items-center justify-center gap-2 disabled:opacity-50"
-            >
-              {isLoading ? "Updating..." : "Update"}
-              {!isLoading && <span>→</span>}
-            </button>
-          </form>
+              {/* Submit */}
+              <button
+                type="submit"
+                disabled={isLoading}
+                className="flex items-center justify-center w-full gap-2 py-3 mt-6 font-medium transition rounded-md cream-bg red-color hover:opacity-90 disabled:opacity-50"
+              >
+                {isLoading ? "Updating..." : "Update"}
+                {!isLoading && <span>→</span>}
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
