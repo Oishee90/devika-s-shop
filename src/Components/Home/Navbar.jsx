@@ -229,7 +229,7 @@ const Navbar = () => {
 
             {/* MOBILE MENU BUTTON */}
             <button
-              className="relative w-6 h-6 pr-3 lg:hidden "
+              className="relative w-6 h-6 lg:hidden"
               onClick={() => {
                 setMobileOpen(!mobileOpen);
                 setActiveModal(null); // close popup if open
