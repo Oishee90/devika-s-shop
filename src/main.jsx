@@ -12,6 +12,8 @@ import SignUp from "./Components/Pages/SignUp";
 import AllProduct from "./Components/AllProduct/AllProduct";
 import ProductDetails from "./Components/ProductDetails.jsx/Productid";
 import Productid from "./Components/ProductDetails.jsx/Productid";
+import CheckoutPage from "./Components/Checkout/CheckoutPage";
+import Chekout from "./Components/Checkout/Chekout";
 // import ScrollToTop from "./Components/ScrollToTop";
 
 const router = createBrowserRouter([
@@ -61,6 +63,14 @@ const router = createBrowserRouter([
     element: (
       <>
         <Productid></Productid>
+      </>
+    ),
+  },
+  {
+    path: "checkout",
+    element: (
+      <>
+        <Chekout></Chekout>
       </>
     ),
   },

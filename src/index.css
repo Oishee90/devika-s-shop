@@ -116,6 +116,9 @@
     transform: scale(1.1) rotate(1deg);
   }
 }
+.input {
+  @apply w-full bg-[#D8CBB8] px-4 py-3 text-sm outline-none;
+}
 
 .drunk-hover:hover {
   animation: drunkWobble 0.7s ease-in-out forwards;
