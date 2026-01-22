@@ -120,3 +120,44 @@ export const careInstructionsFaq = [
     answer: "Avoid spraying perfume directly on the fabric.",
   },
 ];
+export const reviewsData = {
+  summary: {
+    rating: 5.0,
+    totalReviews: 10,
+    recommendPercent: 100,
+  },
+  reviews: [
+    {
+      id: 1,
+      rating: 5,
+      title: "great jacket. well insulated and keeps you warm",
+      description:
+        "would recommend. nice fit and colour. well worth the money",
+      time: "1 days ago",
+    },
+    {
+      id: 2,
+      rating: 5,
+      title: "great jacket. well insulated and keeps you warm",
+      description:
+        "would recommend. nice fit and colour. well worth the money",
+      time: "1 days ago",
+    },
+    {
+      id: 3,
+      rating: 5,
+      title: "great jacket. well insulated and keeps you warm",
+      description:
+        "would recommend. nice fit and colour. well worth the money",
+      time: "1 days ago",
+    },
+    {
+      id: 4,
+      rating: 5,
+      title: "great jacket. well insulated and keeps you warm",
+      description:
+        "would recommend. nice fit and colour. well worth the money",
+      time: "1 days ago",
+    },
+  ],
+};
