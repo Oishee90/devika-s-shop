@@ -10,6 +10,8 @@ import Login from "./Components/Pages/Login";
 import Forgot from "./Components/Pages/Forgot";
 import SignUp from "./Components/Pages/SignUp";
 import AllProduct from "./Components/AllProduct/AllProduct";
+import ProductDetails from "./Components/ProductDetails.jsx/Productid";
+import Productid from "./Components/ProductDetails.jsx/Productid";
 // import ScrollToTop from "./Components/ScrollToTop";
 
 const router = createBrowserRouter([
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
     element: (
       <>
         <AllProduct></AllProduct>
+      </>
+    ),
+  },
+  {
+    path: "product-details",
+    element: (
+      <>
+        <Productid></Productid>
       </>
     ),
   },

@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../Home/Navbar";
 import ProductBanner from "./ProductBanner";
 import ProductFilterPage from "./ProductFilterPage";
+import Footer from "../Home/Footer";
 
 export default function AllProduct() {
   return (
@@ -10,6 +11,7 @@ export default function AllProduct() {
 
       <ProductBanner></ProductBanner>
       <ProductFilterPage></ProductFilterPage>
+      <Footer></Footer>
     </div>
   );
 }

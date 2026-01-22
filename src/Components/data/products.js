@@ -68,3 +68,18 @@ export const products = [
     colors: ["#000000", "#7C2D12", "#1D4ED8", "#22C55E", "#F97316"],
   },
 ];
+export const productData = {
+  brand: "Maantra Store",
+  title: "Premium Sherwani",
+  price: 112,
+  rating: 5.0,
+  reviews: 10,
+  color: "White",
+  stock: 10,
+  images: [
+    "https://res.cloudinary.com/dwycwft99/image/upload/v1768902546/image_13_o5o97b.png",
+    "https://res.cloudinary.com/dwycwft99/image/upload/v1768902447/image_14_1_ennnkf.png",
+    "https://res.cloudinary.com/dwycwft99/image/upload/v1768902546/image_13_o5o97b.png",
+    "https://res.cloudinary.com/dwycwft99/image/upload/v1768902447/image_14_1_ennnkf.png",
+  ],
+};
