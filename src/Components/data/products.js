@@ -83,3 +83,40 @@ export const productData = {
     "https://res.cloudinary.com/dwycwft99/image/upload/v1768902447/image_14_1_ennnkf.png",
   ],
 };
+export const productDetailsFaq = [
+  {
+    question: "Fabric & Material",
+    answer: "Premium blended silk fabric with traditional craftsmanship.",
+  },
+  {
+    question: "Fit & Comfort",
+    answer: "Regular fit designed for long-hour comfort.",
+  },
+  {
+    question: "Occasion",
+    answer: "Perfect for weddings, engagements & festive events.",
+  },
+  {
+    question: "Country of Origin",
+    answer: "Made in India.",
+  },
+];
+
+export const careInstructionsFaq = [
+  {
+    question: "Washing Instructions",
+    answer: "Dry clean only. Do not machine wash.",
+  },
+  {
+    question: "Storage",
+    answer: "Store in a cool, dry place away from sunlight.",
+  },
+  {
+    question: "Ironing",
+    answer: "Use low heat or steam iron only.",
+  },
+  {
+    question: "Handling",
+    answer: "Avoid spraying perfume directly on the fabric.",
+  },
+];

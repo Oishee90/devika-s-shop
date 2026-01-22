@@ -36,7 +36,7 @@ export default function ProductGallery({
             src={img}
             onClick={() => setActiveImage(index)}
             className={`w-20 h-32 object-cover border cursor-pointer flex-shrink-0 ${
-              activeImage === index ? "border-[#6B1B1B]" : "border-transparent"
+              activeImage === index ? "border-[#5B0D0D]" : "border-transparent"
             }`}
           />
         ))}
@@ -44,8 +44,8 @@ export default function ProductGallery({
 
       {/* Main Image */}
       <div className="relative flex items-center justify-center ">
-        <button onClick={prevImage} className="absolute left-4 text-[#6B1B1B]">
-          <FaChevronLeft size={22} />
+        <button onClick={prevImage} className="absolute left-4 red-color">
+          <FaChevronLeft className="text-2xl" />
         </button>
 
         <img
@@ -53,8 +53,8 @@ export default function ProductGallery({
           className="max-h-[750px] object-contain "
         />
 
-        <button onClick={nextImage} className="absolute right-4 text-[#6B1B1B]">
-          <FaChevronRight size={22} />
+        <button onClick={nextImage} className="absolute right-4 red-color">
+          <FaChevronRight className="text-2xl" />
         </button>
       </div>
     </div>

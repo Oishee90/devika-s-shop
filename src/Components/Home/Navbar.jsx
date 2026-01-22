@@ -260,11 +260,13 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <div
-          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden inter  ${
-            mobileOpen ? "sm:w-[40%] w-full" : "w-0"
-          }`}
+          className={`lg:hidden fixed right-0 z-50 h-screen
+    transition-all duration-500 rounded-l-2xl overflow-hidden inter
+    ${isHome ? "top-[70px] cream-bg red-color" : "top-[118px] bg-black/20 backdrop-blur-xl border-l border-l-red/30 red-color"}
+    ${mobileOpen ? "sm:w-[40%] w-full" : "w-0"}
+  `}
         >
-          <ul className="flex flex-col gap-5 px-6 py-6">
+          <ul className="flex flex-col gap-5 px-6 py-8">
             {/* Home */}
             <li>
               <button
