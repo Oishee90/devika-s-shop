@@ -85,7 +85,7 @@ const FeaturedCategories = () => {
       <div className="mx-auto">
         {/* Title */}
         <div className="flex flex-col items-center mb-12">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl  text-[#F5E6D3] text-center tracking-wide mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl  text-[#F5E6D3] text-center tracking-wide mb-4 canela">
             FEATURED CATEGORIES
           </h2>
         </div>

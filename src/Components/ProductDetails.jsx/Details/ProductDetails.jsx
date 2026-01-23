@@ -18,6 +18,20 @@ export default function ProductDetails({ product }) {
   const [sizeGuideOpen, setSizeGuideOpen] = useState(false);
   const [showOutOfStock, setShowOutOfStock] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const handleScrollToReviews = () => {
+    const section = document.getElementById("reviews");
+    if (!section) return;
+
+    const yOffset = -80; // fixed header থাকলে adjust করো
+    const y =
+      section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <div className="max-w-md red-color canela">
       <p className="mb-2 text-lg">{product.brand}</p>
@@ -228,7 +242,12 @@ export default function ProductDetails({ product }) {
           )}
         </div>
 
-        <span className="underline cursor-pointer ">Reviews</span>
+        <span
+          className="underline cursor-pointer "
+          onClick={handleScrollToReviews}
+        >
+          Reviews
+        </span>
       </div>
       <SizeGuideModal
         isOpen={sizeGuideOpen}
