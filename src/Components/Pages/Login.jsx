@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -20,8 +21,20 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email === "admin@gmail.com" && password === "admin@gmail.com") {
+
+    const storedUser = JSON.parse(localStorage.getItem("User"));
+
+    if (!storedUser) {
+      toast.error("❌ No account found. Please sign up first.");
+      return;
+    }
+
+    if (storedUser.email === email && storedUser.password === password) {
       toast.success("Login Successful!");
+
+      // 🔹 optional: login state save
+      localStorage.setItem("isLoggedIn", "true");
+
       setTimeout(() => navigate("/"), 1500);
     } else {
       toast.error("❌ Invalid email or password.");

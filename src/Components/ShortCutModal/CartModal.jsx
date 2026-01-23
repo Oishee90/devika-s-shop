@@ -2,6 +2,7 @@
 import { FiX, FiTrash2, FiMinus, FiPlus } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import { MdLockOutline } from "react-icons/md";
+import { Link } from "react-router-dom";
 const CartModal = ({ open, onClose, cartItems }) => {
   // 🔹 Local state for cart
   const [items, setItems] = useState([]);
@@ -140,9 +141,12 @@ const CartModal = ({ open, onClose, cartItems }) => {
             Tax included and shipping calculated at checkout
           </p>
 
-          <button className="w-full mt-4 bg-[#571010] text-white py-3 rounded-md  inter flex items-center gap-3 justify-center">
-            <MdLockOutline className="text-xl" /> Check Out
-          </button>
+          <Link to="/checkout">
+            {" "}
+            <button className="w-full mt-4 bg-[#571010] text-white py-3 rounded-md  inter flex items-center gap-3 justify-center">
+              <MdLockOutline className="text-xl" /> Check Out
+            </button>
+          </Link>
         </div>
       </div>
     </>
