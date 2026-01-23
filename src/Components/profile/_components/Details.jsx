@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 // Reusable Input Component
 const Input = ({
@@ -24,7 +25,7 @@ const Input = ({
         type={type}
         {...register(name)}
         placeholder={placeholder}
-        className={`w-full bg-[#6b0f12] text-white px-4 py-3 text-sm outline-none ${inputClass}`}
+        className={`w-full bg-[#6b0f12] text-white placeholder:text-[#F9EFD5] px-4 py-3 text-sm outline-none ${inputClass}`}
         {...props}
       />
     </div>
@@ -40,7 +41,7 @@ const Button = ({
   onClick,
   ...props
 }) => {
-  const baseClasses = "w-full py-3 text-sm transition";
+  const baseClasses = "w-full inter text-[16px] py-3 text-sm transition";
   const variants = {
     primary: "border border-[#6b0f12] text-[#6b0f12] hover:bg-[#6b0f12] hover:text-white",
     filled: "bg-[#6b0f12] text-white hover:bg-[#5a0d10]",
@@ -62,9 +63,23 @@ const Button = ({
 const Details = () => {
   const { register, handleSubmit, reset } = useForm();
 
+  const handleSaveSuccess = () => {
+  Swal.fire({
+    title: "Saved Successfully!",
+    text: "Your changes have been saved successfully.",
+    icon: "success",
+    confirmButtonColor: "#5B0D0D",
+    confirmButtonText: "OK",
+    background: "#f7eed8",
+    color: "#5B0D0D",
+  });
+};
+
+
   const onSubmit = (data) => {
     console.log("User details:", data);
     // Handle save logic here
+    handleSaveSuccess()
   };
 
   const handleCancel = () => {

@@ -59,7 +59,7 @@ const MantraaStory = () => {
                     </div>
                 </section>
 
-                <section className='flex justify-center items-center flex-col red-bg text-white gap-5 px-36 py-10'>
+                <section className='flex justify-center items-center flex-col red-bg text-white gap-5 md:px-36 px-4 py-10'>
                     <h3 className='text-[25px] lora text-[#F9EFD5]'>Fashion for every Generation</h3>
 
                     <p className='text-[20px] flex flex-col items-center inter justify-center pb-9 gap-8'>
@@ -74,18 +74,18 @@ const MantraaStory = () => {
 </span>
                     </p>
 <img 
-    className='w-[100%] h-[100vh]  object-top object-cover' 
+    className='w-[100%] h-[100vh]  md:object-top object-cover' 
     src={banner2} 
     alt="" 
 />
                 </section>
 
 
-                <section className='red-bg py-12 px-36 pb-20'>
+                <section className='red-bg py-12 md:px-36 px-4 pb-20'>
 
                     <h2 className='text-center lora text-[#F9EFD5] text-[25px]'> Meet Our Team</h2>
 
-        <div className='grid grid-cols-4 mt-9 gap-7 lora justify-items-center'>
+        <div className='grid md:grid-cols-4 grid-cols-1 mt-9 gap-7 lora justify-items-center'>
                 {
                 [1,2,3,4].map(items => (
                     <div key={items} className='w-full'>

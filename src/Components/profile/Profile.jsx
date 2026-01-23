@@ -14,9 +14,7 @@ import {
   FiLock, 
   FiLogOut 
 } from "react-icons/fi";
-
-
-
+import Swal from "sweetalert2";
 
 const menuItems = [
   { label: "My personal information", icon: <FiUser /> },
@@ -24,12 +22,32 @@ const menuItems = [
   { label: "My delivery address", icon: <FiMapPin /> },
   { label: "My mantras", icon: <FiGift /> },
   { label: "Change password", icon: <FiLock /> },
-  { label: "Sign out", icon: <FiLogOut /> },
+  { label: "Sign out", icon: <FiLogOut />, isSignOut: true },
 ];
-
 
 const Profile = () => {
   const [activeMenu, setActiveMenu] = useState("Welcome to your account");
+
+  const handleSignOut = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be signed out of your account",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#5B0D0D",
+      cancelButtonColor: "#4A5565",
+      confirmButtonText: "Yes, sign out",
+      cancelButtonText: "Cancel",
+      background: "#f7eed8",
+      color: "#5B0D0D",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Add your sign out logic here
+        console.log("User signed out");
+        // For example: localStorage.clear(), redirect to login, etc.
+      }
+    });
+  };
 
   const renderContent = () => {
     switch (activeMenu) {
@@ -48,9 +66,6 @@ const Profile = () => {
       case "Change password":
         return <ChangePass />;
 
-      case "Sign out":
-        return <div>Sign Out Logic</div>;
-
       default:
         return <div className="text-center flex items-center justify-center h-[70vh]"><p className="text-[#5B0D0D] text-[32px] inter">Welcome to your account</p></div>;
     }
@@ -61,7 +76,7 @@ const Profile = () => {
       <Navbar />
 
       <section className="min-h-screen bg-[#6b0f12] pb-12">
-        <div className="max-w-8xl px-44 mx-auto grid grid-cols-1 pt-44 md:grid-cols-[360px_1fr] gap-10">
+        <div className="max-w-8xl md:px-44 p-4 mx-auto grid grid-cols-1 pt-44 md:grid-cols-[360px_1fr] gap-10">
 
           {/* LEFT SIDEBAR */}
           <div className="space-y-8">
@@ -70,9 +85,7 @@ const Profile = () => {
             <div className="border border-[#f7eed8]">
               <div className="bg-[#6b0f12] h-20" />
               <div className="bg-[#f7eed8] px-6 pb-6 relative">
-                <div
-                
-                className="absolute -top-10 left-6 w-20 h-20 rounded-full shadow-xl bg-[#6b0f12] flex items-center justify-center text-white text-xl border-[5px] border-white ">
+                <div className="absolute -top-10 left-6 w-20 h-20 rounded-full shadow-xl bg-[#6b0f12] flex items-center justify-center text-white text-xl border-[5px] border-white">
                   D
                 </div>
                 <div className="pt-0 ml-24">
@@ -84,32 +97,45 @@ const Profile = () => {
 
             {/* MENU */}
             <div className="border border-[#f7eed8] p-3 divide-y divide-[#f7eed8]">
-            {menuItems.map((item, index) => (
-  <div
-    key={index}
-    onClick={() => setActiveMenu(item.label)}
-    className={`px-5 inter text-[18px] py-4 mt-4 text-sm cursor-pointer transition flex items-center gap-3
-      ${
-        activeMenu === item.label
-          ? "bg-[#f7eed8] text-[#6b0f12]"
-          : "bg-[#d9cfbd] text-[#6b0f12]"
-      }`}
-  >
-    {item.icon}
-    <span>{item.label}</span>
-  </div>
-))}
+              {menuItems.map((item, index) => {
+                if (item.isSignOut) {
+                  return (
+                    <button
+                      key={index}
+                      onClick={handleSignOut}
+                      className="w-full px-5 inter text-[22px] py-4 mt-4 border-none text-sm cursor-pointer transition flex items-center gap-3 bg-[#d9cfbd] text-[#6b0f12] hover:bg-[#5B0D0D] hover:text-[#F9EFD5]"
+                    >
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </button>
+                  );
+                }
 
+                return (
+                  <div
+                    key={index}
+                    onClick={() => setActiveMenu(item.label)}
+                    className={`px-5 inter text-[22px] py-4 mt-4 border-none text-sm cursor-pointer transition flex items-center gap-3
+                      ${
+                        activeMenu === item.label
+                          ? "bg-[#5B0D0D] text-[#F9EFD5]"
+                          : "bg-[#d9cfbd] text-[#6b0f12]"
+                      }`}
+                  >
+                    {item.icon}
+                    <span>{item.label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
           {/* RIGHT CONTENT */}
           <div className="bg-[#f7eed8] flex items-center justify-center">
-            <div className="w-full  h-[78vh] overflow-y-auto r ">
+            <div className="w-full h-[78vh] overflow-y-auto">
               {renderContent()}
             </div>
           </div>
-
         </div>
       </section>
 
