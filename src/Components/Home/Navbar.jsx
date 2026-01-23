@@ -202,7 +202,12 @@ const Navbar = () => {
               }}
             />
 
-            <FiUser />
+            <FiUser
+              className="cursor-pointer"
+              onClick={() => {
+                navigate("/login");
+              }}
+            />
             <FiHeart
               className="cursor-pointer"
               onClick={() => {
@@ -320,7 +325,8 @@ const Navbar = () => {
                           <button
                             key={item}
                             onClick={() => {
-                              navigate(`/menswear/${item}`);
+                              // navigate(`/menswear/${item}`);
+                              navigate("/all-product");
                               closeAllDropdowns();
                             }}
                             className="text-left hover:text-[#571010]"
