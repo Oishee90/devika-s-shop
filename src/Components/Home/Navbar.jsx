@@ -20,12 +20,12 @@ import { SiGoogledocs } from "react-icons/si";
 const fakeCartItems = [
   {
     id: 1,
-    name: "Groom Sherwani",
+    name: "Jacket",
     price: 256,
     qty: 2,
     size: "XL",
     color: "White",
-    image: "https://i.ibb.co/2kz5Y7n/sherwani.png",
+    image: "https://res.cloudinary.com/dwycwft99/image/upload/v1769160788/maroon-mens-kurta-pajama_ri27zu.jpg",
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const fakeCartItems = [
     qty: 1,
     size: "XL",
     color: "White",
-    image: "https://i.ibb.co/2kz5Y7n/sherwani.png",
+    image: "https://res.cloudinary.com/dwycwft99/image/upload/v1769161004/arun-prakash-gTtOoI_KXFY-unsplash_1_onzbfj.png",
   },
 ];
 
@@ -140,7 +140,7 @@ const Navbar = () => {
                 <div className="absolute top-8 left-0 w-[220px] cream-bg red-color shadow-lg">
                   <button
                     onClick={() => setCategoryOpen(!categoryOpen)}
-                    className="w-full flex justify-between items-center px-4 py-3 hover:bg-[#222] hover:text-[#fce9cf] text-sm"
+                    className="w-full flex justify-between items-center px-4 py-3 hover:bg-[#ffe7c6]  text-sm"
                   >
                     Shop By Category <FiChevronRight />
                   </button>
@@ -160,7 +160,7 @@ const Navbar = () => {
                             navigate(`/all-product`);
                             closeAllDropdowns();
                           }}
-                          className="block w-full text-left px-4 py-3 hover:bg-[#222] hover:text-[#fce9cf]"
+                          className="block w-full text-left px-4 py-3 hover:bg-[#fce9cf] text-sm"
                         >
                           {item.replace("-", " ")}
                         </button>
@@ -258,7 +258,7 @@ const Navbar = () => {
                       {/* Sign out */}
                       <button
                         onClick={() => {
-                          localStorage.removeItem("dummyUser");
+                          localStorage.removeItem("User");
                           localStorage.removeItem("isLoggedIn");
                           setOpenProfile(false);
                           navigate("/login");

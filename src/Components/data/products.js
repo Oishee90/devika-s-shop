@@ -40,7 +40,7 @@ export const products = [
     price: 210,
     outOfStock: false,
     images: [
-      "https://res.cloudinary.com/dwycwft99/image/upload/v1768902546/image_13_o5o97b.png",
+      "https://res.cloudinary.com/dwycwft99/image/upload/v1769160149/why-be-boring-when-you-can-make-statement-studio-shot-stylishly-dressed-young-man-posing-against-grey-background_kbxteb.jpg",
       "https://res.cloudinary.com/dwycwft99/image/upload/v1768902447/image_14_1_ennnkf.png",
     ],
     colors: ["#000000", "#991B1B", "#2563EB", "#16A34A", "#EAB308"],
@@ -165,7 +165,8 @@ export const cartItems = [
     color: "Black",
     price: 256,
     qty: 1,
-    image: "https://i.ibb.co/6n5h7zR/sherwani.png",
+    image:
+      "https://res.cloudinary.com/dwycwft99/image/upload/v1769160149/why-be-boring-when-you-can-make-statement-studio-shot-stylishly-dressed-young-man-posing-against-grey-background_kbxteb.jpg",
   },
   {
     id: 2,

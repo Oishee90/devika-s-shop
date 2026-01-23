@@ -24,7 +24,7 @@ const Footer = () => {
             <Link to="mantraa-story">
               <li className="mt-2">Maantra Story</li>
             </Link>
-            <Link to="reward">
+            <Link to="rewards">
               <li className="mt-2">Reward</li>
             </Link>
           </ul>

@@ -16,7 +16,7 @@ export default function AllProductCard({ product }) {
       {/* Image Wrapper */}
       <Link to="/product-details">
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-hidden h-[25rem]"
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
@@ -64,9 +64,9 @@ export default function AllProductCard({ product }) {
                   <BsCart3 className="text-xl" />
                 </button>
 
-                <button className="flex items-center justify-center w-10 h-10 rounded cream-bg red-color">
+              <Link to="/product-details">  <button className="flex items-center justify-center w-10 h-10 rounded cream-bg red-color">
                   <BsEye className="text-xl" />
-                </button>
+                </button></Link>
               </div>
             </div>
           )}

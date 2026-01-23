@@ -3,6 +3,7 @@ import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import video1 from "../../assets/video.mp4";
 import video2 from "../../assets/video.mp4";
 import video3 from "../../assets/video.mp4";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const slides = [
@@ -75,9 +76,9 @@ const Banner = () => {
                 <p className="max-w-md mt-3 text-sm md:text-lg md:mt-9 inter">
                   {slide.description}
                 </p>
-                <button className="mt-8 inline-flex items-center gap-3 bg-[#EFE8D8] text-black px-6 py-3 text-sm font-medium">
+             <Link to="/all-product">  <button className="mt-8 inline-flex items-center gap-3 bg-[#EFE8D8] text-black px-6 py-3 text-sm font-medium">
                   {slide.buttonText}
-                </button>
+                </button></Link> 
               </div>
             </div>
           </div>
