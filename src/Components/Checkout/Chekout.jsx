@@ -2,7 +2,8 @@ import React from "react";
 import CheckoutPage from "./CheckoutPage";
 import HeadingStyle from "../Home/HeadingStyle";
 import Navbar from "../Home/Navbar";
-import WelcomePopup from "../ShortCutModal/WelcomePopup";
+
+import WhatsAppButton from "../Pages/WhatsAppButton";
 
 export default function Chekout() {
   return (
@@ -10,7 +11,7 @@ export default function Chekout() {
       <HeadingStyle />
       <Navbar />
       <CheckoutPage></CheckoutPage>
-      <WelcomePopup />
+      {/* <WhatsAppButton></WhatsAppButton> */}
     </div>
   );
 }

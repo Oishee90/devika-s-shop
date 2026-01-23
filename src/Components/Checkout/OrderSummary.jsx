@@ -1,38 +1,29 @@
 import { useState } from "react";
 import { cartItems } from "../data/products";
 
-
 const OrderSummary = () => {
-    const [cardsItems, setCardsItems] = useState(cartItems);
+  const [cardsItems, setCardsItems] = useState(cartItems);
   const subtotal = cartItems.reduce(
     (sum, item) => sum + item.price * item.qty,
-    0
+    0,
   );
 
   return (
-    <div className="text-[#F6EED7]">
+    <div className="text-[#FFFFFF] canela">
       {/* Products */}
       <div className="mb-6 space-y-6">
         {cartItems.map((item) => (
-          <div
-            key={item.id}
-            className="flex items-start justify-between"
-          >
+          <div key={item.id} className="flex items-start justify-between">
             <div className="flex gap-4">
-              <img
-                src={item.image}
-                className="object-cover h-20 w-14"
-              />
+              <img src={item.image} className="object-cover h-20 w-14" />
               <div>
-                <p className="text-sm font-medium">
-                  {item.title}
-                </p>
-                <p className="text-xs">
+                <p className="text-lg font-medium">{item.title}</p>
+                <p className="text-base inter">
                   {item.size} · {item.color} · Qty:{item.qty}
                 </p>
               </div>
             </div>
-            <p className="text-sm">${item.price}</p>
+            <p className="text-base inter">${item.price}</p>
           </div>
         ))}
       </div>
@@ -40,17 +31,17 @@ const OrderSummary = () => {
       {/* Coupon */}
       <div className="flex gap-2 mb-6">
         <input
-          className="w-full bg-transparent border border-[#F6EED7] px-4 py-2 text-sm"
+          className="w-full bg-transparent border border-[#F9EFD5S] px-4 py-2 text-bae inter placeholder:text-[#F9EFD5] md:w-1/2 text-lg"
           placeholder="Discount or gift code"
         />
-        <button className="bg-[#F6EED7] text-[#6B0F0F] px-6">
+        <button className="px-6 text-lg font-medium cream-bg red-color md:w-1/2 inter">
           Apply
         </button>
       </div>
 
       {/* Price */}
-      <div className="space-y-2 text-sm">
-        <div className="flex justify-between">
+      <div className="space-y-2 text-lg cream-color inter ">
+        <div className="flex justify-between inter">
           <span>Subtotal · {cartItems.length} items</span>
           <span>${subtotal}</span>
         </div>
@@ -58,18 +49,18 @@ const OrderSummary = () => {
           <span>Delivery</span>
           <span>$0.00</span>
         </div>
-        <div className="flex justify-between text-base font-semibold">
+        <div className="flex justify-between text-lg font-semibold cream-color inter">
           <span>Total</span>
           <span>${subtotal}</span>
         </div>
       </div>
 
       {/* Button */}
-      <button className="w-full bg-[#F6EED7] text-[#6B0F0F] py-4 mt-8 font-semibold">
+      <button className="w-full py-4 mt-8 font-semibold cream-bg red-color">
         BUY NOW
       </button>
 
-      <p className="mt-3 text-xs text-center">
+      <p className="mt-3 text-xl text-left inter cream-color">
         All transactions are secure and encrypted
       </p>
     </div>

@@ -79,21 +79,6 @@ export default function AddToCartSuccessModal({
           </div>
         </div>
 
-        {/* Optional footer / action buttons */}
-        {/* <div className="flex justify-end gap-3 px-6 py-4 border-t border-white/10 bg-black/20">
-          <button
-            onClick={onClose}
-            className="px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-lg text-white transition"
-          >
-            Continue Shopping
-          </button>
-          <button
-            onClick={onClose}
-            className="px-6 py-2.5 bg-white text-[#6B1B1B] font-medium rounded-lg hover:bg-gray-100 transition"
-          >
-            View Cart
-          </button>
-        </div> */}
       </div>
     </div>
   );
