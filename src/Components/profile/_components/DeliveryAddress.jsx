@@ -1,35 +1,39 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaRegEdit } from "react-icons/fa";
+import { IoLocationOutline } from "react-icons/io5";
 import { RiDeleteBinLine } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 // Reusable Address Card Component
 const AddressCard = ({ address, onEdit, onDelete }) => {
   return (
     <div className="bg-[#6b0f12] text-[#F9EFD5] p-6 relative mb-4 rounded-lg">
-      <div className="absolute right-4 top-4 flex gap-4">
+      <div className="absolute  right-4 top-4 flex flex-col gap-5">
         <button 
           onClick={onEdit} 
           className="text-white flex items-center gap-2 text-sm hover:text-gray-300 transition"
           type="button"
         >
-          <FaRegEdit size={18} /> 
+          <FaRegEdit size={19} /> 
         </button>
         <button 
           onClick={onDelete} 
           className="text-[#E7000B] flex items-center gap-2 text-sm hover:text-red-400 transition"
           type="button"
         >
-          <RiDeleteBinLine size={18} /> 
+          <RiDeleteBinLine size={20} /> 
         </button>
       </div>
 
-      <p className="font-medium text-lg">{address.name}</p>
-      <p className="text-sm opacity-90">{address.email}</p>
-      <p className="text-sm opacity-90">{address.phone}</p>
-      <p className="text-sm mt-2 font-semibold">{address.country}</p>
-      <p className="text-sm">{address.streetAddress}</p>
-      <p className="text-sm">{address.city}, {address.postcode}</p>
+ <div className="text-[18px] inter">
+       <p className="">{address.name}</p>
+      <p className=" opacity-90">{address.email}</p>
+      <p className=" opacity-90">{address.phone}</p>
+      <p className=" mt-2 ">{address.country}</p>
+      <p className="">{address.streetAddress}</p>
+      <p className="">{address.city}, {address.postcode}</p>
+ </div>
       
 
     </div>
@@ -50,7 +54,7 @@ const FormInput = ({ label, type = "text", register, errors, name, placeholder, 
           ...validation
         })}
         placeholder={placeholder}
-        className={`w-full bg-[#6b0f12] text-white px-4 py-3 text-sm outline-none rounded transition ${
+        className={`w-full bg-[#6b0f12] placeholder:text-[#F9EFD5] text-white px-4 py-3 text-sm outline-none rounded transition ${
           errors[name] ? 'border border-red-500' : ''
         }`}
       />
@@ -114,6 +118,20 @@ const DeliveryAddress = () => {
     setValue 
   } = useForm();
 
+
+  const handleSaveSuccess = () => {
+  Swal.fire({
+    title: "Saved Successfully!",
+    text: "Your changes have been saved successfully.",
+    icon: "success",
+    confirmButtonColor: "#5B0D0D",
+    confirmButtonText: "OK",
+    background: "#f7eed8",
+    color: "#5B0D0D",
+  });
+};
+
+
   const onSubmit = (data) => {
     const newAddress = {
       id: addresses.length + 1,
@@ -123,6 +141,7 @@ const DeliveryAddress = () => {
     };
     
     setAddresses([...addresses, newAddress]);
+    handleSaveSuccess()
     reset();
     setShowAddAddress(false);
   };
@@ -160,9 +179,9 @@ const DeliveryAddress = () => {
 
             <button
               onClick={() => setShowAddAddress(true)}
-              className="w-full md:w-auto bg-[#6b0f12] text-white py-3 px-6 text-sm flex items-center justify-center gap-2 mb-8 hover:bg-[#5a0d10] transition duration-300"
+              className="w-full  bg-[#6b0f12] text-[#F9EFD5] inter py-5 px-6 text-[17px] flex items-center justify-center gap-2 mb-8 hover:bg-[#5a0d10] transition duration-300"
             >
-              <span>+</span> ADD NEW ADDRESS
+              <span><IoLocationOutline size={25} /></span> ADD NEW ADDRESS
             </button>
 
             {/* Addresses List */}
@@ -193,13 +212,13 @@ const DeliveryAddress = () => {
               <h2 className="text-3xl canela md:text-3xl font-serif text-[#6b0f12]">
                 Add new address
               </h2>
-              <p className="text-[16px] lora text-[#6b0f12] mt-2">
+              <p className="text-[18px] lora text-[#6b0f12] mt-2">
                 Please enter an address you would like to save and deliver your items to.
               </p>
             </div>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
                 {/* First Name */}
                 <FormInput
                   label="First Name"
@@ -219,9 +238,9 @@ const DeliveryAddress = () => {
                   placeholder="Enter last name"
                   required={true}
                 />
-              </div>
+     
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
                 {/* Email */}
                 <FormInput
                   label="Email"
@@ -248,14 +267,9 @@ const DeliveryAddress = () => {
                   errors={errors}
                   placeholder="Enter phone number"
                   required={true}
-                  validation={{
-                    pattern: {
-                      value: /^[0-9+\-\s]+$/,
-                      message: "Invalid phone number"
-                    }
-                  }}
+
                 />
-              </div>
+        
 
               {/* Country */}
               <FormSelect
@@ -283,7 +297,7 @@ const DeliveryAddress = () => {
                 required={true}
               />
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
                 {/* City */}
                 <FormInput
                   label="City"
@@ -303,10 +317,10 @@ const DeliveryAddress = () => {
                   placeholder="Enter postcode"
                   required={true}
                 />
-              </div>
+             
 
               {/* Checkboxes */}
-              <div className="space-y-3 text-xs lora text-[#6b0f12] p-4  rounded">
+              <div className="space-y-3 text-sm lora text-[#6b0f12] p-4  rounded">
                 <label className="flex items-center gap-3 cursor-pointer">
                   <input 
                     type="checkbox" 

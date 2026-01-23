@@ -100,7 +100,8 @@ const router = createBrowserRouter([
   {
     path:'shipping-policy',
     element: <ShippingPolicy />
-  }
+  },
+  {
     path: "all-product",
     element: (
       <>

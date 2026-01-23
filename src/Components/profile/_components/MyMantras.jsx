@@ -17,7 +17,7 @@ const MyMantras = () => {
   };
 
   return (
-    <div className="w-full h-full bg-[#f7eed8]  p-12">
+    <div className="w-full h-full bg-[#f7eed8] p-5 md:p-12">
       <div className="w-fulll space-y-10">
 
         {/* Header */}
@@ -52,8 +52,8 @@ const MyMantras = () => {
             <div key={index} className="space-y-1">
               <div className="flex justify-between text-sm">
                 <span className="inter text-[#0A0A0A]">{item.name}</span>
-                <span>
-                  {item.collected}/{item.total}
+                <span className="lora flex text-sm gap-2">
+                  <span>{item.collected}</span>/ <span>{item.total}</span>
                 </span>
               </div>
               <div className="h-2 bg-[#ddd2bf]">

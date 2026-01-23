@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 // Reusable Input Component
 const Input = ({
@@ -21,10 +22,11 @@ const Input = ({
         </label>
       )}
       <input
-        type={type}
+        type="text"
+
         {...register(name)}
         placeholder={placeholder}
-        className={`w-full bg-[#ddd2bf] text-[#6b0f12] px-4 py-3 text-sm outline-none ${inputClass}`}
+        className={`w-full bg-[#ddd2bf] text-inter placeholder:text-[#5B0D0D] text-[#5B0D0D] px-4 py-3 text-[16px] outline-none ${inputClass}`}
         {...props}
       />
     </div>
@@ -64,8 +66,22 @@ const Button = ({
 const ChangePass = () => {
   const { register, handleSubmit, reset } = useForm();
 
+  const handleSaveSuccess = () => {
+  Swal.fire({
+    title: "Saved Successfully!",
+    text: "Your changes have been saved successfully.",
+    icon: "success",
+    confirmButtonColor: "#5B0D0D",
+    confirmButtonText: "OK",
+    background: "#f7eed8",
+    color: "#5B0D0D",
+  });
+};
+
+
   const onSubmit = (data) => {
     console.log("Password change data:", data);
+    handleSaveSuccess()
     // Handle password change logic here
     reset();
   };

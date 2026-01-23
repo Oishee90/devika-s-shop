@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { FaChevronRight } from "react-icons/fa6";
 import OrderModal from "../ShortCutModal/Sijan/SijanModal";
 import { FiUpload, FiX } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 
 /* ---------------- Status Badge ---------------- */
-const TrackOrderContent = () => {
+const TrackOrderContent = ({handleSaveSuccess}) => {
   const steps = [
     { title: "Order Placed", status: "completed" },
     { title: "Order Processed", status: "completed" },
@@ -15,7 +16,7 @@ const TrackOrderContent = () => {
 
   return (
     <div className="p-6 space-y-6">
-      <div>
+      <div className="border-b pb-6">
         <h2 className="text-[21px] canela font-semibold">Track Order</h2>
         <p className="text-[14px] inter pt-2 text-[#4A5565]">ORD-2025-001234</p>
       </div>
@@ -88,7 +89,7 @@ const TrackOrderContent = () => {
 
 
 
-const AddReviewContent = () => (
+const AddReviewContent = ({handleSaveSuccess}) => (
   <div className="p-6 space-y-6">
     <h2 className="text-[21px] canela font-bold">Add Review</h2>
 
@@ -120,7 +121,7 @@ const AddReviewContent = () => (
 
     <div className="flex justify-between  w-full gap-3">
       <button className="border px-4 w-full py-3 rounded">Cancel</button>
-      <button className="bg-[#6E0B0B] w-full text-white px-4 py-3 rounded">
+      <button onClick={()=>handleSaveSuccess()} className="bg-[#6E0B0B] w-full text-white px-4 py-3 rounded">
         Submit Review
       </button>
     </div>
@@ -130,7 +131,7 @@ const AddReviewContent = () => (
 
 
 
-const RefundContent = () => {
+const RefundContent = ({handleSaveSuccess}) => {
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleFileUpload = (e) => {
@@ -162,7 +163,7 @@ const RefundContent = () => {
   return (
     <div className="w-full h-[80vh] overflow-y-auto p-6 space-y-6">
       {/* Header */}
-      <div>
+      <div className="border-b pb-6">
         <h2 className="text-[21px] canela font-bold text-gray-900">
           Apply for Refund
         </h2>
@@ -315,6 +316,7 @@ const RefundContent = () => {
       {/* Actions */}
       <div className="flex lora gap-3 pt-2">
         <button
+        onClick={()=> handleSaveSuccess()}
           disabled={uploadedFiles.length === 0}
           className={`
             flex-1 py-3 rounded-lg text-sm transition
@@ -561,6 +563,21 @@ const Orders = () => {
   ];
 
 
+  const handleSaveSuccess = () => {
+  Swal.fire({
+    title: "Submitted Successfully!",
+    text: "Your changes have been saved successfully.",
+    icon: "success",
+    confirmButtonColor: "#5B0D0D",
+    confirmButtonText: "OK",
+    background: "#f7eed8",
+    color: "#5B0D0D",
+  });
+  setIsOpen(false)
+};
+
+
+
 
   return (
     <div className="min-h-screen bg-[#6E0B0B] pt-32 py-10">
@@ -581,9 +598,9 @@ const Orders = () => {
       </div>
       <OrderModal setModalType={setModalType} onClose={()=> setIsOpen(false)} isOpen={isOpen}>
         
-  {modalType === "track" && <TrackOrderContent />}
-  {modalType === "review" && <AddReviewContent />}
-  {modalType === "refund" && <RefundContent />}
+  {modalType === "track" && <TrackOrderContent handleSaveSuccess={handleSaveSuccess} />}
+  {modalType === "review" && <AddReviewContent handleSaveSuccess={handleSaveSuccess} />}
+  {modalType === "refund" && <RefundContent handleSaveSuccess={handleSaveSuccess} />}
       </OrderModal>
     </div>
   );
