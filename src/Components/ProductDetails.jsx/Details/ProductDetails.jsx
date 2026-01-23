@@ -7,11 +7,15 @@ import { careInstructionsFaq, productDetailsFaq } from "../../data/products";
 import SizeGuideModal from "../../ShortCutModal/SizeGuideModal";
 import OutOfStockModal from "../../ShortCutModal/OutOfStockModal";
 import AddToCartSuccessModal from "../../ShortCutModal/AddToCartSuccessModal";
+import ComingSoonModal from "../../ShortCutModal/ComingSoonModal";
 export default function ProductDetails({ product }) {
   const [qty, setQty] = useState(1);
   const [size, setSize] = useState("");
   const [showDetails, setShowDetails] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
+  // new modal state
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
+
   // values: "details" | "care" | null
   const [sizeOpen, setSizeOpen] = useState(false);
   const sizes = ["S", "M", "L", "XL"];
@@ -70,7 +74,14 @@ export default function ProductDetails({ product }) {
       <div className="relative mb-4 inter">
         <div className="flex items-center justify-between mb-2 font-semibold">
           <p className="text-sm">Size:</p>
-          <p className="text-sm underline cursor-pointer">What is my Size?</p>
+          <p
+            onClick={() => {
+              setComingSoonOpen(true);
+            }}
+            className="text-sm underline cursor-pointer"
+          >
+            What is my Size?
+          </p>
         </div>
 
         {/* Dropdown Button */}
@@ -263,6 +274,11 @@ export default function ProductDetails({ product }) {
         product={product}
         selectedSize={size}
         quantity={qty}
+      />
+      <ComingSoonModal
+        tittle="Enter manually"
+        open={comingSoonOpen}
+        onClose={() => setComingSoonOpen(false)}
       />
     </div>
   );

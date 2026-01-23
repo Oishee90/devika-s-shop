@@ -1,4 +1,8 @@
+import { useState } from "react";
+import ComingSoonModal from "../ShortCutModal/ComingSoonModal";
+
 const CheckoutForm = () => {
+  const [comingSoonOpen, setComingSoonOpen] = useState(false);
   return (
     <div className="inter">
       <h2 className="mb-1 text-2xl font-semibold red-color inter ">Contact</h2>
@@ -60,9 +64,19 @@ const CheckoutForm = () => {
         />
       </div>
 
-      <p className="mt-2 text-sm font-semibold underline cursor-pointer red-color">
+      <p
+        onClick={() => {
+          setComingSoonOpen(true);
+        }}
+        className="mt-2 text-sm font-semibold underline cursor-pointer red-color"
+      >
         Enter manually
       </p>
+      <ComingSoonModal
+        tittle="Enter manually"
+        open={comingSoonOpen}
+        onClose={() => setComingSoonOpen(false)}
+      />
     </div>
   );
 };
