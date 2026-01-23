@@ -29,7 +29,7 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Basic validation
+    // Validation
     if (password !== confirmPassword) {
       toast.error("❌ Passwords do not match!");
       return;
@@ -40,8 +40,18 @@ const SignUp = () => {
       return;
     }
 
-    // Success
+    // 🔹 Dummy user data
+    const userData = {
+      email,
+      contactNumber,
+      password,
+    };
+
+    // 🔹 Save to localStorage
+    localStorage.setItem("User", JSON.stringify(userData));
+
     toast.success("Account created successfully!");
+
     setTimeout(() => navigate("/login"), 1500);
   };
 

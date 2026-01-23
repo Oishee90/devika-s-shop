@@ -4,6 +4,7 @@ import HeadingStyle from "../Home/HeadingStyle";
 import Navbar from "../Home/Navbar";
 
 import WhatsAppButton from "../Pages/WhatsAppButton";
+import Footer from "../Home/Footer";
 
 export default function Chekout() {
   return (
@@ -11,6 +12,7 @@ export default function Chekout() {
       <HeadingStyle />
       <Navbar />
       <CheckoutPage></CheckoutPage>
+      <Footer></Footer>
       {/* <WhatsAppButton></WhatsAppButton> */}
     </div>
   );

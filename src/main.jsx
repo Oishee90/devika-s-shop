@@ -25,6 +25,7 @@ import ProductDetails from "./Components/ProductDetails.jsx/Productid";
 import Productid from "./Components/ProductDetails.jsx/Productid";
 import CheckoutPage from "./Components/Checkout/CheckoutPage";
 import Chekout from "./Components/Checkout/Chekout";
+import ScrollToTop from "./Components/Pages/ScrollToTop";
 // import ScrollToTop from "./Components/ScrollToTop";
 
 const router = createBrowserRouter([
@@ -63,44 +64,47 @@ const router = createBrowserRouter([
   },
   {
     path: "mantraa-story",
-    element: <MantraaStory />
+    element: <MantraaStory />,
   },
   {
     path: "rewards",
-    element: <Rewards />
+    element: <Rewards />,
   },
   {
-    path:'profile',
-    element: <Profile />
+    path: "profile",
+    element: <Profile />,
   },
   {
-    path:'terms',
-    element:<TermsnConditions />
+    path: "terms",
+    element: <TermsnConditions />,
   },
   {
-    path:'privacy-policy',
-    element: <PrivacyPolicy />
+    path: "privacy-policy",
+    element: <PrivacyPolicy />,
   },
   {
-    path:'wishlist',
-    element: <Wishlist />
+    path: "wishlist",
+    element: <Wishlist />,
   },
   {
-    path:'orders',
-    element: <div>
-      <Navbar />
-       <Orders />
-       <Footer />
-    </div>
+    path: "orders",
+    element: (
+      <div>
+        <Navbar />
+        <Orders />
+        <Footer />
+      </div>
+    ),
   },
   {
-    path:'refund-policy',
-    element: <RefundPolicy />
+    path: "refund-policy",
+    element: <RefundPolicy />,
   },
   {
-    path:'shipping-policy',
-    element: <ShippingPolicy />
-  }
+    path: "shipping-policy",
+    element: <ShippingPolicy />,
+  },
+  {
     path: "all-product",
     element: (
       <>
