@@ -1,6 +1,7 @@
 import { products } from "../data/products";
 import { FaCircleArrowRight } from "react-icons/fa6";
 import ProductCard from "../Pages/ProductCard";
+import { Link } from "react-router-dom";
 
 const MostPopular = () => {
   return (
@@ -14,9 +15,9 @@ const MostPopular = () => {
           </p>
         </div>
 
-        <button className="flex items-center gap-4 px-5 py-4 rounded-md cream-bg red-color">
+      <Link to="all-product"> <button className="flex items-center gap-4 px-5 py-4 rounded-md cream-bg red-color">
           Show More Products <FaCircleArrowRight />
-        </button>
+        </button></Link> 
       </div>
 
       {/* Grid */}

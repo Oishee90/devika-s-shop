@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { LuMoveLeft } from "react-icons/lu";
 import { LuMoveRight } from "react-icons/lu";
+import { Link } from "react-router-dom";
 // Fake data for categories
 const categoriesData = [
   {
@@ -14,25 +15,25 @@ const categoriesData = [
     id: 2,
     title: "Kurtas",
     image:
-      "https://res.cloudinary.com/dwycwft99/image/upload/v1768902546/image_13_o5o97b.png",
+      "https://res.cloudinary.com/dwycwft99/image/upload/v1769160788/maroon-mens-kurta-pajama_ri27zu.jpg",
   },
   {
     id: 3,
     title: "Jackets",
     image:
-      "https://res.cloudinary.com/dwycwft99/image/upload/v1768902546/image_13_o5o97b.png",
+      "https://res.cloudinary.com/dwycwft99/image/upload/v1769160149/why-be-boring-when-you-can-make-statement-studio-shot-stylishly-dressed-young-man-posing-against-grey-background_kbxteb.jpg",
   },
   {
     id: 4,
     title: "Traditional Wear",
     image:
-      "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&q=80",
+      "https://res.cloudinary.com/dwycwft99/image/upload/v1768988587/Rectangle_23_hiswmr.png",
   },
   {
     id: 5,
     title: "Wedding Collection",
     image:
-      "https://res.cloudinary.com/dwycwft99/image/upload/v1768902546/image_13_o5o97b.png",
+      "https://res.cloudinary.com/dwycwft99/image/upload/v1769161004/arun-prakash-gTtOoI_KXFY-unsplash_1_onzbfj.png",
   },
 ];
 
@@ -116,31 +117,33 @@ const FeaturedCategories = () => {
                   className="flex-shrink-0 px-2 md:px-3 lg:px-4"
                   style={{ width: `${100 / itemsPerView}%` }}
                 >
-                  <div className="relative overflow-hidden rounded-lg shadow-2xl cursor-pointer group h-[469px]">
-                    {/* Image */}
-                    <img
-                      src={category.image}
-                      alt={category.title}
-                      className="object-cover w-full transition-transform duration-300 group-hover:scale-110 drunk-hover"
-                    />
+                  <Link to="/product-details">
+                    {" "}
+                    <div className="relative overflow-hidden rounded-lg shadow-2xl cursor-pointer group h-[38rem]">
+                      {/* Image */}
+                      <img
+                        src={category.image}
+                        alt={category.title}
+                        className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-110"
+                      />
 
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-                    {/* Title */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
                       {/* Title */}
-                      <h3 className="font-serif text-2xl tracking-wide text-white md:text-3xl">
-                        {category.title}
-                      </h3>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                        {/* Title */}
+                        <h3 className="font-serif text-2xl tracking-wide text-white md:text-3xl">
+                          {category.title}
+                        </h3>
 
-                      {/* Border */}
-                      <div className="w-[8rem] h-[2px] bg-[#FFFFFF] mt-3 mb-4"></div>
+                        {/* Border */}
+                        <div className="w-[8rem] h-[2px] bg-[#FFFFFF] mt-3 mb-4"></div>
 
-                      {/* View Button (hidden by default) */}
-                      <button
-                        className="
-    pointer-events-auto
+                        {/* View Button (hidden by default) */}
+                        <button
+                          className="
+ 
     opacity-0 translate-y-3
     group-hover:opacity-100 group-hover:translate-y-0
     transition-all duration-300
@@ -149,14 +152,15 @@ const FeaturedCategories = () => {
    
     bg-[#F9EFD5] text-[#5B0D0D]
   "
-                      >
-                        VIEW
-                      </button>
-                    </div>
+                        >
+                          VIEW
+                        </button>
+                      </div>
 
-                    {/* Hover Effect */}
-                    <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
-                  </div>
+                      {/* Hover Effect */}
+                      <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
+                    </div>
+                  </Link>
                 </div>
               ))}
             </div>

@@ -7,7 +7,28 @@ const OrderSummary = () => {
     (sum, item) => sum + item.price * item.qty,
     0,
   );
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isApplying, setIsApplying] = useState(false);
+  const [applySuccess, setApplySuccess] = useState(false);
+  const handleBuyNow = () => {
+    setIsProcessing(true);
+    setIsSuccess(false);
 
+    setTimeout(() => {
+      setIsProcessing(false);
+      setIsSuccess(true);
+    }, 2000); // 2 seconds processing time
+  };
+  const handleApply = () => {
+    setIsApplying(true);
+    setApplySuccess(false);
+
+    setTimeout(() => {
+      setIsApplying(false);
+      setApplySuccess(true);
+    }, 2000);
+  };
   return (
     <div className="text-[#FFFFFF] canela">
       {/* Products */}
@@ -34,8 +55,11 @@ const OrderSummary = () => {
           className="w-full bg-transparent border border-[#F9EFD5S] px-4 py-2 text-bae inter placeholder:text-[#F9EFD5] md:w-1/2 text-lg"
           placeholder="Discount or gift code"
         />
-        <button className="px-6 text-lg font-medium cream-bg red-color md:w-1/2 inter">
-          Apply
+        <button
+          onClick={handleApply}
+          className="px-6 text-lg font-medium cream-bg red-color md:w-1/2 inter"
+        >
+          {isApplying ? "Processing..." : applySuccess ? "Applied!" : "Apply"}
         </button>
       </div>
 
@@ -56,8 +80,11 @@ const OrderSummary = () => {
       </div>
 
       {/* Button */}
-      <button className="w-full py-4 mt-8 font-semibold cream-bg red-color">
-        BUY NOW
+      <button
+        onClick={handleBuyNow}
+        className="w-full py-4 mt-8 font-semibold cream-bg red-color"
+      >
+        {isProcessing ? "Processing..." : isSuccess ? "Success!" : "BUY NOW"}
       </button>
 
       <p className="mt-3 text-xl text-left inter cream-color">

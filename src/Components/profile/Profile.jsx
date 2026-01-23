@@ -6,19 +6,20 @@ import Payment from "./_components/Payment";
 import DeliveryAddress from "./_components/DeliveryAddress";
 import MyMantras from "./_components/MyMantras";
 import ChangePass from "./_components/ChangePass";
-import { 
-  FiUser, 
-  FiCreditCard, 
-  FiMapPin, 
-  FiGift, 
-  FiLock, 
-  FiLogOut 
+import {
+  FiUser,
+  FiCreditCard,
+  FiMapPin,
+  FiGift,
+  FiLock,
+  FiLogOut,
 } from "react-icons/fi";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const menuItems = [
   { label: "My personal information", icon: <FiUser /> },
-  { label: "My payment details", icon: <FiCreditCard /> },
+  // { label: "My payment details", icon: <FiCreditCard /> },
   { label: "My delivery address", icon: <FiMapPin /> },
   { label: "My mantras", icon: <FiGift /> },
   { label: "Change password", icon: <FiLock /> },
@@ -27,7 +28,7 @@ const menuItems = [
 
 const Profile = () => {
   const [activeMenu, setActiveMenu] = useState("Welcome to your account");
-
+const navigate = useNavigate();
   const handleSignOut = () => {
     Swal.fire({
       title: "Are you sure?",
@@ -44,6 +45,9 @@ const Profile = () => {
       if (result.isConfirmed) {
         // Add your sign out logic here
         console.log("User signed out");
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("User");
+            navigate("/");
         // For example: localStorage.clear(), redirect to login, etc.
       }
     });
@@ -67,7 +71,13 @@ const Profile = () => {
         return <ChangePass />;
 
       default:
-        return <div className="text-center flex items-center justify-center h-[70vh]"><p className="text-[#5B0D0D] text-[32px] inter">Welcome to your account</p></div>;
+        return (
+          <div className="text-center flex items-center justify-center h-[70vh]">
+            <p className="text-[#5B0D0D] text-[32px] inter">
+              Welcome to your account
+            </p>
+          </div>
+        );
     }
   };
 
@@ -77,10 +87,8 @@ const Profile = () => {
 
       <section className="min-h-screen bg-[#6b0f12] pb-12">
         <div className="max-w-8xl md:px-44 p-4 mx-auto grid grid-cols-1 pt-44 md:grid-cols-[360px_1fr] gap-10">
-
           {/* LEFT SIDEBAR */}
           <div className="space-y-8">
-
             {/* USER CARD */}
             <div className="border border-[#f7eed8]">
               <div className="bg-[#6b0f12] h-20" />

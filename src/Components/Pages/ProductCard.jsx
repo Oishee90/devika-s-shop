@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
     <div className="py-4 cursor-pointer">
       {/* Image Wrapper */}
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden h-[25rem]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >

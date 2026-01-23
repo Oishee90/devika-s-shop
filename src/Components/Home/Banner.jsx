@@ -3,6 +3,7 @@ import { FiArrowUp, FiArrowDown } from "react-icons/fi";
 import video1 from "../../assets/video.mp4";
 import video2 from "../../assets/video.mp4";
 import video3 from "../../assets/video.mp4";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const slides = [
@@ -17,7 +18,8 @@ const Banner = () => {
     },
     {
       id: 2,
-      video: video2,
+      video:
+        "https://www.shutterstock.com/shutterstock/videos/3944463751/preview/stock-footage-a-shot-of-an-indian-groom-posing-for-the-photoshoot-at-his-indian-wedding.webm",
       title: "Summer Essentials",
       year: "2026",
       description:
@@ -75,9 +77,12 @@ const Banner = () => {
                 <p className="max-w-md mt-3 text-sm md:text-lg md:mt-9 inter">
                   {slide.description}
                 </p>
-                <button className="mt-8 inline-flex items-center gap-3 bg-[#EFE8D8] text-black px-6 py-3 text-sm font-medium">
-                  {slide.buttonText}
-                </button>
+                <Link to="/all-product">
+                  {" "}
+                  <button className="mt-8 inline-flex items-center gap-3 bg-[#EFE8D8] text-black px-6 py-3 text-sm font-medium">
+                    {slide.buttonText}
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
