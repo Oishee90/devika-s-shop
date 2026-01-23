@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
 import logo from "../../assets/logo.png";
-
+import { useState, useRef, useEffect } from "react";
+import { FiUser } from "react-icons/fi";
+import { FaUser } from "react-icons/fa";
+import { MdOutlinePerson, MdOutlineReceiptLong } from "react-icons/md";
 import {
   FiSearch,
   FiHeart,
-  FiUser,
   FiChevronDown,
   FiChevronRight,
 } from "react-icons/fi";
@@ -14,7 +15,7 @@ import HeadingStyle from "./HeadingStyle";
 import CartModal from "../ShortCutModal/CartModal";
 import WishlistAuthModal from "../ShortCutModal/WishlistAuthModal";
 import SearchModal from "../ShortCutModal/SearchModal";
-
+import { SiGoogledocs } from "react-icons/si";
 /* ===== Fake Cart Data ===== */
 const fakeCartItems = [
   {
@@ -42,13 +43,29 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [menswearOpen, setMenswearOpen] = useState(false);
   const [categoryOpen, setCategoryOpen] = useState(false);
-
+  const [openProfile, setOpenProfile] = useState(false);
+  const profileRef = useRef(null);
   // new single modal state
   const [activeModal, setActiveModal] = useState(null);
   // values: "cart" | "wishlist" | "search" | null
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (profileRef.current && !profileRef.current.contains(e.target)) {
+        setOpenProfile(false);
+      }
+    };
 
-  // fake user (testing)
-  const user = null;
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("User"));
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, []);
 
   const [cartItems] = useState(fakeCartItems);
 
@@ -168,7 +185,7 @@ const Navbar = () => {
             <li>
               <button
                 onClick={() => {
-                  navigate("/my-story");
+                  navigate("/mantraa-story");
                   closeAllDropdowns();
                 }}
                 className={underlineClass("/my-story")}
@@ -202,18 +219,71 @@ const Navbar = () => {
               }}
             />
 
-            <FiUser
-              className="cursor-pointer"
-              onClick={() => {
-                navigate("/login");
-              }}
-            />
+            <div className="relative inter" ref={profileRef}>
+              {user ? (
+                <>
+                  {/* Profile Image */}
+                  <img
+                    src="https://res.cloudinary.com/dwycwft99/image/upload/v1769150901/Ellipse_2_limsun.png"
+                    alt="profile"
+                    className="object-cover w-8 h-8 rounded-full cursor-pointer"
+                    onClick={() => setOpenProfile(!openProfile)}
+                  />
+
+                  {/* Dropdown */}
+                  {openProfile && (
+                    <div className="absolute right-0 z-50 w-56 mt-3 rounded-md shadow-lg cream-bg">
+                      {/* Header */}
+                      <div className="px-6 py-4 text-base font-medium red-color ">
+                        Hi Devika
+                      </div>
+
+                      {/* Menu Items */}
+                      <button
+                        onClick={() => navigate("/profile")}
+                        className="flex items-center gap-2 w-full px-6 py-2 text-base red-color hover:bg-[#F3E7CC]"
+                      >
+                        <FaUser />
+                        My profile
+                      </button>
+
+                      <button
+                        onClick={() => navigate("/orders")}
+                        className="flex items-center gap-2 w-full px-6 py-2 text-base red-color hover:bg-[#F3E7CC]"
+                      >
+                        <SiGoogledocs />
+                        My orders
+                      </button>
+
+                      {/* Sign out */}
+                      <button
+                        onClick={() => {
+                          localStorage.removeItem("dummyUser");
+                          localStorage.removeItem("isLoggedIn");
+                          setOpenProfile(false);
+                          navigate("/login");
+                        }}
+                        className="w-full text-left px-6 py-4 text-base red-color hover:bg-[#F3E7CC] underline "
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <FiUser
+                  className="cursor-pointer"
+                  onClick={() => navigate("/login")}
+                />
+              )}
+            </div>
+
             <FiHeart
               className="cursor-pointer"
               onClick={() => {
                 if (!user) {
                   setActiveModal("wishlist");
-                  setMobileOpen(false); // close hamburger if open
+                  setMobileOpen(false);
                 } else {
                   navigate("/wishlist");
                 }
@@ -358,7 +428,7 @@ const Navbar = () => {
             <li>
               <button
                 onClick={() => {
-                  navigate("/my-story");
+                  navigate("/mantraa-story");
                   closeAllDropdowns();
                 }}
                 className="w-full text-xl text-left hover:text-[#571010]
