@@ -68,7 +68,7 @@ const Navbar = () => {
   };
 
   const isActive = (path) => location.pathname === path;
-
+  const isHome = location.pathname === "/";
   const underlineClass = (path) =>
     `relative transition-colors duration-300
      hover:text-[#F9EFD5]
@@ -81,11 +81,15 @@ const Navbar = () => {
       <HeadingStyle />
 
       <nav
-        className={`fixed top-[48px] left-0 w-full z-50 transition-all ${
-          isScrolled
-            ? "bg-transparent backdrop-blur-md shadow-md"
-            : "bg-transparent backdrop-blur-sm"
-        }`}
+        className={`fixed top-[48px] left-0 w-full z-50 transition-all
+    ${
+      isHome
+        ? isScrolled
+          ? "bg-transparent backdrop-blur-md shadow-md"
+          : "bg-transparent backdrop-blur-sm"
+        : "bg-[#571010] shadow-md"
+    }
+  `}
       >
         <div className="mx-auto lg:px-32 px-6 h-[70px] flex items-center justify-between text-white">
           {/* LEFT MENU */}
@@ -136,7 +140,7 @@ const Navbar = () => {
                         <button
                           key={item}
                           onClick={() => {
-                            navigate(`/menswear/${item}`);
+                            navigate(`/all-product`);
                             closeAllDropdowns();
                           }}
                           className="block w-full text-left px-4 py-3 hover:bg-[#222] hover:text-[#fce9cf]"
@@ -256,11 +260,13 @@ const Navbar = () => {
 
         {/* MOBILE MENU */}
         <div
-          className={`lg:hidden fixed top-[70px] right-0 z-50 h-screen cream-bg red-color transition-all duration-500 rounded-l-lg  overflow-hidden inter ${
-            mobileOpen ? "sm:w-[40%] w-full" : "w-0"
-          }`}
+          className={`lg:hidden fixed right-0 z-50 h-screen
+    transition-all duration-500 rounded-l-2xl overflow-hidden inter
+    ${isHome ? "top-[70px] cream-bg red-color" : "top-[118px] bg-black/20 backdrop-blur-xl border-l border-l-red/30 red-color"}
+    ${mobileOpen ? "sm:w-[40%] w-full" : "w-0"}
+  `}
         >
-          <ul className="flex flex-col gap-5 px-6 py-6">
+          <ul className="flex flex-col gap-5 px-6 py-8">
             {/* Home */}
             <li>
               <button

@@ -20,6 +20,11 @@ import Wishlist from "./Components/wishlist/Wishlist";
 import Orders from "./Components/orders/Orders";
 import Navbar from "./Components/Home/Navbar";
 import Footer from "./Components/Home/Footer";
+import AllProduct from "./Components/AllProduct/AllProduct";
+import ProductDetails from "./Components/ProductDetails.jsx/Productid";
+import Productid from "./Components/ProductDetails.jsx/Productid";
+import CheckoutPage from "./Components/Checkout/CheckoutPage";
+import Chekout from "./Components/Checkout/Chekout";
 // import ScrollToTop from "./Components/ScrollToTop";
 
 const router = createBrowserRouter([
@@ -96,6 +101,29 @@ const router = createBrowserRouter([
     path:'shipping-policy',
     element: <ShippingPolicy />
   }
+    path: "all-product",
+    element: (
+      <>
+        <AllProduct></AllProduct>
+      </>
+    ),
+  },
+  {
+    path: "product-details",
+    element: (
+      <>
+        <Productid></Productid>
+      </>
+    ),
+  },
+  {
+    path: "checkout",
+    element: (
+      <>
+        <Chekout></Chekout>
+      </>
+    ),
+  },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

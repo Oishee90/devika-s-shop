@@ -72,78 +72,80 @@ const Verification = ({ email }) => {
           </div>
 
           {/* RIGHT FORM */}
-          <div className="flex justify-center h-screen px-9 py-9 red-bg inter">
-            <div className="w-full max-w-lg cream-color">
+          <div className="flex h-screen px-28 py-9 red-bg inter">
+            <div className="w-full cream-color">
               {/* Logo */}
-              <div className="flex justify-center mb-12">
-                <img src={logo} alt="Logo" className="h-16" />
+              <div className="flex justify-center mb-8">
+                <img src={logo} alt="Logo" className="" />
               </div>
 
-              {/* Back Link */}
-              <button
-                onClick={() => window.history.back()}
-                className="flex items-center gap-2 text-[#F5E6D3] mb-8 text-sm font-light hover:underline"
-              >
-                <span>←</span>
-                Back
-              </button>
-
-              {/* Heading */}
-              <h2 className="mb-3 text-xl font-normal canela">
-                Enter Verification Code
-              </h2>
-              <p className="text-sm text-[#E8D8C3] mb-8">
-                We've sent a 6-digit code to:
-                <br />
-                <span className="font-normal">
-                  {email || "saifmahmud142@gmail.com"}
-                </span>
-              </p>
-
-              {/* Verification Code Label */}
-              <label className="block mb-3 text-sm font-light">
-                Verification Code
-              </label>
-
-              {/* OTP Input Fields */}
-              <div className="flex gap-2 mb-6" onPaste={handlePaste}>
-                {code.map((digit, index) => (
-                  <input
-                    key={index}
-                    id={`input-${index}`}
-                    type="text"
-                    maxLength="1"
-                    value={digit}
-                    onChange={(e) => handleInputChange(e.target.value, index)}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
-                    className="w-12 h-12 border-2 border-[#CAD5E2] bg-transparent rounded-md text-center text-lg text-[#F5E6D3] focus:outline-none focus:border-[#F5E6D3] placeholder-[#B08080]"
-                  />
-                ))}
-              </div>
-
-              {/* Verify Button */}
-              <button
-                onClick={handleSubmit}
-                className="w-full py-3 mt-4 bg-[#F5E6D3] text-[#7A1F1F] font-medium rounded-md hover:opacity-90 transition flex items-center justify-center gap-2"
-              >
-                Verify Code
-                <span>→</span>
-              </button>
-
-              {/* Success/Error Message */}
-              {successMessage && (
-                <p className="mt-4 text-sm text-center text-[#F5E6D3]">
-                  {successMessage}
-                </p>
-              )}
-
-              {/* Resend Code */}
-              <div className="text-center mt-6 text-sm text-[#E8D8C3] font-light">
-                Didn't receive the code?
-                <br />
-                <button className="underline font-normal mt-1 hover:text-[#F5E6D3]">
-                  Resend verification code
+              <div className="max-w-lg">
+                {/* Back Link */}
+                <button
+                  onClick={() => window.history.back()}
+                  className="flex items-center gap-2 text-[#F5E6D3] mb-8 text-sm font-light hover:underline"
+                >
+                  <span>←</span>
+                  Back
                 </button>
+
+                {/* Heading */}
+                <h2 className="mb-3 text-xl font-normal canela">
+                  Enter Verification Code
+                </h2>
+                <p className="text-sm text-[#E8D8C3] mb-8">
+                  We've sent a 6-digit code to:
+                  <br />
+                  <span className="font-normal">
+                    {email || "saifmahmud142@gmail.com"}
+                  </span>
+                </p>
+
+                {/* Verification Code Label */}
+                <label className="block mb-3 text-sm font-light">
+                  Verification Code
+                </label>
+
+                {/* OTP Input Fields */}
+                <div className="flex gap-2 mb-6" onPaste={handlePaste}>
+                  {code.map((digit, index) => (
+                    <input
+                      key={index}
+                      id={`input-${index}`}
+                      type="text"
+                      maxLength="1"
+                      value={digit}
+                      onChange={(e) => handleInputChange(e.target.value, index)}
+                      onKeyDown={(e) => handleKeyDown(e, index)}
+                      className="w-12 h-12 border-2 border-[#CAD5E2] bg-transparent rounded-md text-center text-lg text-[#F5E6D3] focus:outline-none focus:border-[#F5E6D3] placeholder-[#B08080]"
+                    />
+                  ))}
+                </div>
+
+                {/* Verify Button */}
+                <button
+                  onClick={handleSubmit}
+                  className="w-full py-3 mt-4 bg-[#F5E6D3] text-[#7A1F1F] font-medium rounded-md hover:opacity-90 transition flex items-center justify-center gap-2"
+                >
+                  Verify Code
+                  <span>→</span>
+                </button>
+
+                {/* Success/Error Message */}
+                {successMessage && (
+                  <p className="mt-4 text-sm text-center text-[#F5E6D3]">
+                    {successMessage}
+                  </p>
+                )}
+
+                {/* Resend Code */}
+                <div className="text-center mt-6 text-sm text-[#E8D8C3] font-light">
+                  Didn't receive the code?
+                  <br />
+                  <button className="underline font-normal mt-1 hover:text-[#F5E6D3]">
+                    Resend verification code
+                  </button>
+                </div>
               </div>
             </div>
           </div>

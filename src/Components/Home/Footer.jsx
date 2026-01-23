@@ -4,9 +4,9 @@ import { FaTiktok } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-[#D8CBB8] red-color py-16 lg:px-32 px-6 canela">
-      <div className="grid grid-cols-1 gap-10 px-4 pb-16 mx-auto lg:px-8 md:grid-cols-2 lg:grid-cols-5">
+      <div className="grid grid-cols-1 gap-10 px-4 pb-16 mx-auto lg:px-8 md:grid-cols-12 lg:grid-cols-5">
         {/* Logo and Store Links */}
-        <div className="flex flex-col col-span-2 gap-6">
+        <div className="flex flex-col gap-6 md:col-span-2">
           <div className="flex items-center gap-2">
             <img src={logo} alt="Logo" />
           </div>

@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Neuton:ital,wght@0,200;0,300;0,400;0,700;0,800;1,400&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&family=Unbounded:wght@200..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,9 +26,50 @@
   font-weight: 700;
   font-style: normal;
 }
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.category-slider-container {
+  padding: 2rem 0;
+}
+
+.category-item {
+  position: relative;
+}
+
+.category-item img {
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.category-item img:hover {
+  transform: scale(1.05); /* Adds zoom effect on hover */
+}
+
+.category-item .category-overlay {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+.animate-float {
+  animation: floatSlow 3s ease-in-out infinite;
+}
+
 
 .canela{
     font-family: "Canela", serif;
+    
 }
 .dm-sans {
     font-family: "DM Sans", sans-serif;
@@ -59,3 +102,56 @@
   font-family: "Inter", sans-serif;
  
 }
+@keyframes drunkWobble {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  30% {
+    transform: scale(1.08) rotate(2deg);
+  }
+  60% {
+    transform: scale(1.06) rotate(-2deg);
+  }
+  100% {
+    transform: scale(1.1) rotate(1deg);
+  }
+}
+.input {
+  @apply w-full bg-[#D8CBB8] px-4 py-3 text-sm outline-none;
+}
+
+.drunk-hover:hover {
+  animation: drunkWobble 0.7s ease-in-out forwards;
+}
+.hide-scrollbar {
+  overflow: auto;
+  -ms-overflow-style: none;   /* IE, Edge */
+  scrollbar-width: none;      /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;              /* Chrome, Safari */
+}
+.swiper-pagination {
+  bottom: 0 !important;
+}
+/* Default bullet */
+.you-may-like-swiper .swiper-pagination-bullet {
+  background-color: #FFFFFF;
+  opacity: 1;
+  width: 15px;
+  height: 15px;
+}
+
+/* Active bullet */
+.you-may-like-swiper .swiper-pagination-bullet-active {
+  background-color: #6b0f0f;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
