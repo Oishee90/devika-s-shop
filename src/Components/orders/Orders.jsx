@@ -419,7 +419,7 @@ const OrderCard = ({ order,setIsOpen,setModalType }) => {
       }`}
     >
       {/* Header */}
-      <div className="flex justify-between items-center bg-[#F9EFD5] px-6 py-5 border-b">
+      <div className="flex md:flex-row flex-col gap-6 justify-between items-center bg-[#F9EFD5] px-6 py-5 border-b">
         <div className="flex gap-12 text-sm inter text-[#6B6B6B]">
           <div>
             <p className="font-medium text-sm text-[#5B0D0D]">Order Number</p>
@@ -446,11 +446,11 @@ const OrderCard = ({ order,setIsOpen,setModalType }) => {
       </div>
 
       {/* Actions */}
-      <div className="flex gap-3 inter font-medium px-6 pb-4 pt-4">
+      <div className="flex md:flex-row flex-col gap-3 inter font-medium px-6 pb-4 pt-4">
         <button onClick={()=> {
             setIsOpen(true),
             setModalType('track')
-        }} className="bg-[#6E0B0B] border-2 flex items-center gap-2 text-white text-sm px-4 py-3 rounded">
+        }} className="bg-[#6E0B0B] border-2 flex justify-center items-center gap-2 text-white text-sm px-4 py-3 rounded">
           Track Order <FaChevronRight size={12} />
         </button>
 
@@ -581,7 +581,7 @@ const Orders = () => {
 
   return (
     <div className="min-h-screen bg-[#6E0B0B] pt-32 py-10">
-      <div className="max-w-8xl md:px-32 ">
+      <div className="max-w-8xl md:px-32 px-4 ">
 
         {/* Page Title */}
         <h1 className="text-[#F9EFD5]  text-3xl canela f mb-1">
